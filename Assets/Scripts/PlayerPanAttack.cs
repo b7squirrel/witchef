@@ -23,6 +23,8 @@ public class PlayerPanAttack : MonoBehaviour
     
     public float captureDuration;
     private float captureTimer;
+
+    public Inventory inventory;
     
     public int CaptureCounter
     {
@@ -49,7 +51,7 @@ public class PlayerPanAttack : MonoBehaviour
     }
     void Update()
     {
-        if(captureTimer > 0f)
+        if (captureTimer > 0f)
         {
             captureTimer -= Time.deltaTime;
         }
@@ -73,6 +75,23 @@ public class PlayerPanAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             anim.Play("Player_Parrying");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(capturableAmount < 6)
+            {
+                capturableAmount++;
+            }
+            inventory.UpdateSlotAmount();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (capturableAmount > 1)
+            {
+                capturableAmount--;
+            }
+            inventory.UpdateSlotAmount();
         }
     }
 
@@ -111,6 +130,7 @@ public class PlayerPanAttack : MonoBehaviour
                 AudioManager.instance.Play("fire_explosion_01");
                 AudioManager.instance.Play("pan_hit_03");
                 captureCounter = 0;
+                inventory.ClearInventory();
             }
         }
         enemyLoaded = false;

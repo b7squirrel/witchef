@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 [CreateAssetMenu(fileName = "New Roll", menuName = "Roll")]
 public class Rolls : ScriptableObject
 {
-    public rollType theRollType;
-    public enum rollType 
+    public enum rollType
     {
         None,
         GoulF,
@@ -15,9 +17,10 @@ public class Rolls : ScriptableObject
         BombF01,
         GoulF02
     }
-    public void Print()
-    {
-        Debug.Log(theRollType);
-    }
 
+    public rollType theRollType;
+    public Sprite rollSprite;
+    public GameObject rollPrefab;
+
+    
 }

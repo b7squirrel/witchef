@@ -75,11 +75,12 @@ MonoBehaviour:
   isStunned: 0
   isRolling: 0
   dieEffect: {fileID: 6987084327100221053, guid: 036f43595c5bb0743a94c6b3227bc1f5, type: 3}
-  rolling: {fileID: 6960398770623554831, guid: c2c31a9ec37a330458ada94c8b43a775, type: 3}
   isCaptured: 0
   whiteMat: {fileID: 2100000, guid: 8ec93e96670acbe42ad1c1e3ea6e9768, type: 2}
   mSprite: {fileID: 6493158245600938859}
   blinkingDuration: 0.2
+  rolls: {fileID: 11400000, guid: 4928d68c8ffee8547924cc486aad6210, type: 2}
+  inventory: {fileID: 0}
 --- !u!1 &6493158245600938859
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1012072145
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5436736079211173424, guid: 0192487d12000aa489f2fafde06605d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -367,7 +368,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1012072145
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

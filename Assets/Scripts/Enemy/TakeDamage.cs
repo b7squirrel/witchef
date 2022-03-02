@@ -13,7 +13,6 @@ public class TakeDamage : MonoBehaviour
     public GameObject dieEffect;
 
     [Header("Rolling")]
-    public GameObject rolling;
     public bool isCaptured;  // 이 변수로 capture되었음을 전달 받고 GetRolled를 진행시킴
 
     [Header("White Flash")]
@@ -22,6 +21,12 @@ public class TakeDamage : MonoBehaviour
     public GameObject mSprite;
     private SpriteRenderer theSR;
     public float blinkingDuration;
+
+    [Header("Roll Type")]
+    public Rolls rolls;
+
+    [Header("Inventory")]
+    public Inventory inventory;
 
     private void Start()
     {
@@ -73,10 +78,11 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    public void GetRolled()
+    public void GetRolled()  // 롤을 생성하고 인벤토리에 롤타입을 표시
     {
         AudioManager.instance.Play("GetRolled_01");
-        Instantiate(rolling, PlayerPanAttack.instance.panPoint.position, transform.rotation);
+        GameObject roll = Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
+        inventory.AcquireRolls(rolls);
         isStunned = false;
         isCaptured = false;
         HideEnemy();
