@@ -11,10 +11,14 @@ public class CookingSystem : MonoBehaviour
     private Rolls[] rollArray;
     private Rolls _outputRoll;
 
+    public Rolls defaultRoll;
+    public GameObject defaultRollPrefab;
     private Slot[] slots;
 
     private bool[] isToSkip;
     private int numberOfMatching;
+
+    public LayerMask rollsOnPan;
 
     private void Awake()
     {
@@ -95,15 +99,24 @@ public class CookingSystem : MonoBehaviour
         }
         else
         {
-            //_outputRoll = new Rolls { theRollType = recipeOutput };
             _outputRoll = ScriptableObject.CreateInstance<Rolls>();
             _outputRoll.theRollType = recipeOutput;
             Debug.Log("Output is " + _outputRoll.theRollType);
-        }
-    }
 
-    public Rolls GetOutput()
-    {
-        return _outputRoll;
+            Collider2D[] _rollsOnPan = Physics2D.OverlapCircleAll(PlayerPanAttack.instance.panPoint.position,
+                3f, rollsOnPan);
+            foreach (var _roll in _rollsOnPan)
+            {
+                Debug.Log("HERE to Deactivate the roll");
+                _roll.gameObject.SetActive(false);
+            }
+
+            Instantiate(RollManager.instance.GetRoll(recipeOutput).rollPrefab,
+                PlayerPanAttack.instance.panPoint.position, PlayerPanAttack.instance.panPoint.rotation);
+
+            
+        }
+
+
     }
 }

@@ -175,11 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cf8164bc1e5ce41bfa36b5276c9f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roll: {fileID: 0}
-  followingPanSpeed: 0
+  roll: {fileID: 11400000, guid: d4ae5f8a8d213954ea55451f534bd70a, type: 2}
+  followingPanSpeed: 60
   isRolling: 0
   beingHit: 0
-  initForce_x: 0
-  initForce_y: 0
-  hitEffect: {fileID: 0}
-  hitEffectPoint: {fileID: 0}
+  initForce_x: 35
+  initForce_y: 10
+  hitEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
+  hitEffectPoint: {fileID: 1300286938041855346}
