@@ -27,12 +27,15 @@ public class TakeDamage : MonoBehaviour
 
     [Header("Inventory")]
     public Inventory inventory;
+    public CookingSystem cookingSystem;
 
     private void Start()
     {
         currentHP = maxHP;
         theSR = mSprite.GetComponent<SpriteRenderer>();
         initialMat = theSR.material;
+        cookingSystem = FindObjectOfType<Inventory>().GetComponent<CookingSystem>();
+
     }
     private void Update()
     {
@@ -83,6 +86,7 @@ public class TakeDamage : MonoBehaviour
         AudioManager.instance.Play("GetRolled_01");
         GameObject roll = Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         inventory.AcquireRolls(rolls);
+        cookingSystem.Cook();
         isStunned = false;
         isCaptured = false;
         HideEnemy();

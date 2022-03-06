@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e608eb5072dbf428b723a10116c379, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  theRollType: 0
+  rollSprite: {fileID: 21300000, guid: 20f9095cd82f6574ea84d9a1ee9faac2, type: 3}
+  rollPrefab: {fileID: 884199503768893109, guid: c5c4558cb5e05294e9e0e903aec2ce44, type: 3}

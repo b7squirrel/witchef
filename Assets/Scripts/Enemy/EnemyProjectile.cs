@@ -19,6 +19,7 @@ public class EnemyProjectile : MonoBehaviour
     public bool isCaptured; // 캡쳐되었음을 전달 받고 이 스크립트에서 getRolled를 구현
 
     public Inventory inventory;
+    public CookingSystem cookingSystem;
     public Rolls rolls;
     public GameObject sparkEffect;
     public GameObject smokeRed;
@@ -34,6 +35,7 @@ public class EnemyProjectile : MonoBehaviour
         isParried = false;
         isFlying = false;
         inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
+        cookingSystem = FindObjectOfType<Inventory>().GetComponent<CookingSystem>();
     }
 
     void Update()
@@ -138,6 +140,7 @@ public class EnemyProjectile : MonoBehaviour
         AudioManager.instance.Play("GetRolled_01");
         Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         inventory.AcquireRolls(rolls);
+        cookingSystem.Cook();
         HideEnemy();
     }
 

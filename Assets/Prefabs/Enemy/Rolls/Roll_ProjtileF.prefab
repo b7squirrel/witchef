@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3627288301225044263}
   - component: {fileID: 2001755538025821225}
   - component: {fileID: 6690534221524593664}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Roll_ProjtileF
   m_TagString: Rolling
   m_Icon: {fileID: 0}

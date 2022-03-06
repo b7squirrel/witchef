@@ -77,6 +77,8 @@ public class PlayerPanAttack : MonoBehaviour
             anim.Play("Player_Parrying");
         }
         
+
+        //인벤토리 슬롯 갯수 늘리고 줄이기
         if (Input.GetKeyDown(KeyCode.I))
         {
             if(capturableAmount < 6)

@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private Slot[] slots;
+    public static Inventory instance;
+
+    public Slot[] slots;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -15,29 +21,38 @@ public class Inventory : MonoBehaviour
 
     public void UpdateSlotAmount()
     {
-        Debug.Log("Capturable Amount = " + PlayerPanAttack.instance.capturableAmount);
         for (int i = 0; i < PlayerPanAttack.instance.capturableAmount; i++)
         {
             slots[i].gameObject.SetActive(true);
-            Debug.Log("slot[" + i + "] = " + slots[i].enabled);
         }
         for (int i = PlayerPanAttack.instance.capturableAmount; i < slots.Length; i++)
         {
             slots[i].gameObject.SetActive(false);
-            Debug.Log("slot[" + i + "] = " + slots[i].enabled);
         }
     }
 
     public void AcquireRolls(Rolls roll)
     {
-        foreach(var _slot in slots)
+        foreach (var _slot in slots)
         {
-            if(_slot.roll == null)  // 슬롯이 비어있으면
+            // 슬롯이 비어있으면
+            if (_slot.roll == null)  
             {
-                _slot.AddRoll(roll);  // roll을 슬롯에 표시
+                // roll을 슬롯에 표시
+                _slot.AddRoll(roll);
                 return;
             }
         }
+    }
+
+    public int Test()
+    {
+        return 1;
+    }
+
+    public Rolls.rollType GetRollInfo(int _index)
+    {
+        return slots[_index].roll.theRollType;
     }
 
     public void ClearInventory()

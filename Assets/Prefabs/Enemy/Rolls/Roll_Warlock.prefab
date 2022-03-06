@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4961687757381491903}
   - component: {fileID: 4961687757381491888}
   - component: {fileID: 9124770041378434829}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Roll_Warlock
   m_TagString: Rolling
   m_Icon: {fileID: 0}
