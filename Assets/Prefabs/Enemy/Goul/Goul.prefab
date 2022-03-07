@@ -81,6 +81,7 @@ MonoBehaviour:
   blinkingDuration: 0.2
   rolls: {fileID: 11400000, guid: 4928d68c8ffee8547924cc486aad6210, type: 2}
   inventory: {fileID: 0}
+  cookingSystem: {fileID: 0}
 --- !u!1 &6493158245600938859
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +465,7 @@ MonoBehaviour:
   castPoint: {fileID: 6493158246652258253}
   action:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   moveSpeed: 3
   timeToStopFollowing: 5
   isParried: 0

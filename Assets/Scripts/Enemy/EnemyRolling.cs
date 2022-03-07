@@ -91,4 +91,9 @@ public class EnemyRolling : MonoBehaviour
         GameManager.instance.StartCameraShake(8, .8f);
         GameManager.instance.TimeStop(.1f);
     }
+
+    public void DestroyPrefab()
+    {
+        Destroy(gameObject);
+    }
 }

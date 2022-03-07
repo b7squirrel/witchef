@@ -19,6 +19,7 @@ public class CookingSystem : MonoBehaviour
     private int numberOfMatching;
 
     public LayerMask rollsOnPan;
+    private Inventory _inventory;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class CookingSystem : MonoBehaviour
     private void Start()
     {
         slots = GetComponentsInChildren<Slot>();
+        _inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
     }
 
     public void Cook()
@@ -94,26 +96,33 @@ public class CookingSystem : MonoBehaviour
         Rolls.rollType recipeOutput = GetRecipeOutput();
         if (recipeOutput == Rolls.rollType.None)
         {
+            //레시피에 없는 조합이라면 null
             _outputRoll = null;
             Debug.Log("Output is Null");
         }
         else
         {
+            //SO를 생성하고 RollManager에서 rollType에 해당하는 roll을 불러와서 연결해준다
             _outputRoll = ScriptableObject.CreateInstance<Rolls>();
             _outputRoll.theRollType = recipeOutput;
             Debug.Log("Output is " + _outputRoll.theRollType);
 
+            //프라이팬 위의 다른 roll들을 제거한다
             Collider2D[] _rollsOnPan = Physics2D.OverlapCircleAll(PlayerPanAttack.instance.panPoint.position,
                 3f, rollsOnPan);
             foreach (var _roll in _rollsOnPan)
             {
-                Debug.Log("HERE to Deactivate the roll");
-                _roll.gameObject.SetActive(false);
+                if(_roll != null)
+                {
+                    //_roll.gameObject.SetActive(false);
+                    _roll.GetComponent<EnemyRolling>().DestroyPrefab();
+                }
             }
 
+            //roll 프리펩을 생성하고 UI roll 이미지도 인벤토리에 배치한다
             Instantiate(RollManager.instance.GetRoll(recipeOutput).rollPrefab,
                 PlayerPanAttack.instance.panPoint.position, PlayerPanAttack.instance.panPoint.rotation);
-
+            _inventory.AcquireRolls(RollManager.instance.GetRoll(recipeOutput));
             
         }
 
