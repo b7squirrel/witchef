@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     public float jumpRememberTime;
     private float jumpRemember;
 
+    [Header("Roll Weight")]
+    public float weight;
+    public float weightRate;
+
+
     public float CurrentDirection
     {
         get { return currentDirection; }
@@ -126,6 +131,17 @@ public class PlayerController : MonoBehaviour
         {
             theRB.gravityScale = 9f;
         }
+    }
+
+    public void WeightCalculation()
+    {
+        moveSpeed = moveSpeed - (weight * weightRate);
+        jumpForce = jumpForce - (weight * weightRate);
+    }
+
+    public void ResetWeight()
+    {
+        weight = 0f;
     }
 
     void SetAnimationState()

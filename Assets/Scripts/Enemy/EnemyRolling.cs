@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRolling : MonoBehaviour
 {
-    private enum rollingState { rolling, shooting, flying };
+    private enum rollingState { rolling, shooting, flying, dropped };
     private rollingState currentState;
     public Rolls roll;
 
@@ -31,6 +31,11 @@ public class EnemyRolling : MonoBehaviour
     {
         SetDirection();
 
+        if(PlayerHealthController.instance.isDead)
+        {
+            currentState = rollingState.dropped;
+        }
+
         switch (currentState)
         {
             case rollingState.rolling:
@@ -51,6 +56,14 @@ public class EnemyRolling : MonoBehaviour
 
             case rollingState.flying:
                 break;
+
+            case rollingState.dropped:
+                DestroyPrefab();
+                //transform.parent = null;
+                //theRB.gravityScale = 5;
+                break;
+
+                
         }
     }
 
@@ -76,11 +89,6 @@ public class EnemyRolling : MonoBehaviour
             }
         }
     }
-    public void Test()
-    {
-        Debug.Log("Debugging Test");
-    }
-
     public void BeingHit()
     {
         currentState = rollingState.shooting;
@@ -91,7 +99,6 @@ public class EnemyRolling : MonoBehaviour
         GameManager.instance.StartCameraShake(8, .8f);
         GameManager.instance.TimeStop(.1f);
     }
-
     public void DestroyPrefab()
     {
         Destroy(gameObject);

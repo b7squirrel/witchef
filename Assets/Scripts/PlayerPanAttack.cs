@@ -117,6 +117,7 @@ public class PlayerPanAttack : MonoBehaviour
                 AudioManager.instance.Play("fire_explosion_01");
                 AudioManager.instance.Play("pan_hit_03");
                 captureCounter = 0;
+                PlayerController.instance.ResetWeight();
                 inventory.ClearInventory();
                 outputSlot.ClearSlot();
             }

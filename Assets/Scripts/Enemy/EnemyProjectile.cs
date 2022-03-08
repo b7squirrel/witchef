@@ -139,6 +139,8 @@ public class EnemyProjectile : MonoBehaviour
     {
         AudioManager.instance.Play("GetRolled_01");
         Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
+        PlayerController.instance.weight++;
+        PlayerController.instance.WeightCalculation();
         inventory.AcquireRolls(rolls);
         cookingSystem.Cook();
         HideEnemy();

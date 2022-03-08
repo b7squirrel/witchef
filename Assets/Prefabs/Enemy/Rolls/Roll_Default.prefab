@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 355483127748479050}
   - component: {fileID: 6269753938382076598}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Roll_Default
-  m_TagString: Untagged
+  m_TagString: Rolling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 661229349
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 20f9095cd82f6574ea84d9a1ee9faac2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

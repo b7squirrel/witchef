@@ -69,8 +69,6 @@ public class CookingSystem : MonoBehaviour
             Rolls.rollType[] _recipeCheck = recipeDictionary[_recipeRollType];
             for (int i = 0; i < 2; i++)
             {
-                Debug.Log(_inventory.slots[i]);
-
                 for (int j = 0; j < 2; j++)
                 {
                     if (_inventory.slots[i].GetRollType() == _recipeCheck[i] && isToSkip[j] != true)
@@ -98,14 +96,12 @@ public class CookingSystem : MonoBehaviour
         {
             //레시피에 없는 조합이라면 null
             _outputRoll = null;
-            Debug.Log("Output is Null");
         }
         else
         {
             //SO를 생성하고 RollManager에서 rollType에 해당하는 roll을 불러와서 연결해준다
             _outputRoll = ScriptableObject.CreateInstance<Rolls>();
             _outputRoll.theRollType = recipeOutput;
-            Debug.Log("Output is " + _outputRoll.theRollType);
 
             //프라이팬 위의 다른 roll들을 제거한다
             Collider2D[] _rollsOnPan = Physics2D.OverlapCircleAll(PlayerPanAttack.instance.panPoint.position,

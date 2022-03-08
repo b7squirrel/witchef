@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1012072145
-  m_SortingLayer: 0
+  m_SortingLayerID: 661229349
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,6 +151,7 @@ MonoBehaviour:
   homingTime: 1
   isCaptured: 0
   inventory: {fileID: 0}
+  cookingSystem: {fileID: 0}
   rolls: {fileID: 11400000, guid: a0dc85d163d787c4a90e1fa60e984f2a, type: 2}
   sparkEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
   smokeRed: {fileID: 1701936083311470022, guid: a2da5415c2ec54b41af25e7f8a5211ff, type: 3}

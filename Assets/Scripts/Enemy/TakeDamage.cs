@@ -89,6 +89,8 @@ public class TakeDamage : MonoBehaviour
         cookingSystem.Cook();
         isStunned = false;
         isCaptured = false;
+        PlayerController.instance.weight++;
+        PlayerController.instance.WeightCalculation();
         HideEnemy();
     }
     void Die()
