@@ -25,6 +25,7 @@ public class PlayerPanAttack : MonoBehaviour
     private float captureTimer;
 
     public Inventory inventory;
+    public Slot outputSlot;
     
     public int CaptureCounter
     {
@@ -58,11 +59,14 @@ public class PlayerPanAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if(captureCounter < capturableAmount)
-            {
-                anim.Play("Player_Capture");
-                captureTimer = captureDuration;
-            }
+            //¹«ÇÑ Ä¸ÃÄ °¡´É
+            anim.Play("Player_Capture");
+            captureTimer = captureDuration;
+            //if (captureCounter < capturableAmount)
+            //{
+            //    anim.Play("Player_Capture");
+            //    captureTimer = captureDuration;
+            //}
         }
         
         if (Input.GetKeyDown(KeyCode.Z))
@@ -75,25 +79,6 @@ public class PlayerPanAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             anim.Play("Player_Parrying");
-        }
-        
-
-        //ÀÎº¥Åä¸® ½½·Ô °¹¼ö ´Ã¸®°í ÁÙÀÌ±â
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if(capturableAmount < 6)
-            {
-                capturableAmount++;
-            }
-            inventory.UpdateSlotAmount();
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if (capturableAmount > 1)
-            {
-                capturableAmount--;
-            }
-            inventory.UpdateSlotAmount();
         }
     }
 
@@ -133,6 +118,7 @@ public class PlayerPanAttack : MonoBehaviour
                 AudioManager.instance.Play("pan_hit_03");
                 captureCounter = 0;
                 inventory.ClearInventory();
+                outputSlot.ClearSlot();
             }
         }
         enemyLoaded = false;

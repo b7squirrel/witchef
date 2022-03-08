@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     public Slot[] slots;
+    public Slot outputSlot;  // 인스펙터에서 받기
+    public Rolls defaultRoll; // 인스펙터에서 받기
 
     private void Awake()
     {
@@ -16,50 +18,46 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         slots = GetComponentsInChildren<Slot>();
-        UpdateSlotAmount();
     }
 
-    public void UpdateSlotAmount()
+    private void Update()
     {
-        for (int i = 0; i < PlayerPanAttack.instance.capturableAmount; i++)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            slots[i].gameObject.SetActive(true);
-        }
-        for (int i = PlayerPanAttack.instance.capturableAmount; i < slots.Length; i++)
-        {
-            slots[i].gameObject.SetActive(false);
+            for (int i = 0; i < 2; i++)
+            {
+                Debug.Log(slots[i]);
+            }
         }
     }
 
     public void AcquireRolls(Rolls roll)
     {
-        foreach (var _slot in slots)
+        for (int i = 0; i < 2; i++)
         {
             // 슬롯이 비어있으면
-            if (_slot.roll == null)  
+            if (slots[i].GetRollType() == Rolls.rollType.None)
             {
-                // roll을 슬롯에 표시
-                _slot.AddRoll(roll);
+                // roll을 슬롯에 입력
+                slots[i].AddInputRoll(roll);
                 return;
             }
         }
     }
 
-    public int Test()
+    public void AcquireOutPutUI(Rolls roll)
     {
-        return 1;
+        outputSlot.ClearSlot();
+        outputSlot.AddRoll(roll);
     }
 
-    public Rolls.rollType GetRollInfo(int _index)
-    {
-        return slots[_index].roll.theRollType;
-    }
+
 
     public void ClearInventory()
     {
-        foreach (var _slot in slots)
+        for (int i = 0; i < slots.Length; i++)
         {
-            _slot.ClearSlot();
+            slots[i].AddInputRoll(defaultRoll);
         }
     }
 }

@@ -13,7 +13,6 @@ public class CookingSystem : MonoBehaviour
 
     public Rolls defaultRoll;
     public GameObject defaultRollPrefab;
-    private Slot[] slots;
 
     private bool[] isToSkip;
     private int numberOfMatching;
@@ -29,28 +28,29 @@ public class CookingSystem : MonoBehaviour
 
     private void Start()
     {
-        slots = GetComponentsInChildren<Slot>();
         _inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
     }
+
+    
+
 
     public void Cook()
     {
         CreateOutput();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log(slots[0].roll.theRollType);
-        }
-    }
-
     public void InitRecipe()
     {
         recipeDictionary = new Dictionary<Rolls.rollType, Rolls.rollType[]>();
 
         Rolls.rollType[] recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.GoulF; recipe[1] = Rolls.rollType.None;
+        recipeDictionary[Rolls.rollType.GoulF] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.ProjectileF; recipe[1] = Rolls.rollType.None;
+        recipeDictionary[Rolls.rollType.ProjectileF] = recipe;
+
+        recipe = new Rolls.rollType[2];
         recipe[0] = Rolls.rollType.GoulF; recipe[1] = Rolls.rollType.ProjectileF;
         recipeDictionary[Rolls.rollType.BombF01] = recipe;
 
@@ -67,17 +67,17 @@ public class CookingSystem : MonoBehaviour
         foreach (Rolls.rollType _recipeRollType in recipeDictionary.Keys)
         {
             Rolls.rollType[] _recipeCheck = recipeDictionary[_recipeRollType];
-            for (int i = 0; i < _recipeCheck.Length; i++)
+            for (int i = 0; i < 2; i++)
             {
-                Debug.Log(slots[i].GetRollType());
+                Debug.Log(_inventory.slots[i]);
 
-                for (int j = 0; j < _recipeCheck.Length; j++)
+                for (int j = 0; j < 2; j++)
                 {
-                    if (slots[j].GetRollType() == _recipeCheck[i] && isToSkip[j] != true)
+                    if (_inventory.slots[i].GetRollType() == _recipeCheck[i] && isToSkip[j] != true)
                     {
                         isToSkip[j] = true;
                         numberOfMatching++;
-                        if (numberOfMatching == _recipeCheck.Length)
+                        if (numberOfMatching == 2)
                         {
                             Inventory.instance.ClearInventory();
 
@@ -123,7 +123,8 @@ public class CookingSystem : MonoBehaviour
             Instantiate(RollManager.instance.GetRoll(recipeOutput).rollPrefab,
                 PlayerPanAttack.instance.panPoint.position, PlayerPanAttack.instance.panPoint.rotation);
             _inventory.AcquireRolls(RollManager.instance.GetRoll(recipeOutput));
-            
+            _inventory.AcquireOutPutUI(RollManager.instance.GetRoll(recipeOutput));
+
         }
 
 
