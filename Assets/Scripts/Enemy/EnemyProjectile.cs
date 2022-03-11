@@ -141,7 +141,7 @@ public class EnemyProjectile : MonoBehaviour
         Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         PlayerController.instance.weight++;
         PlayerController.instance.WeightCalculation();
-        inventory.AcquireRolls(rolls);
+        inventory.GetSlotsReady(rolls);
         cookingSystem.Cook();
         HideEnemy();
     }

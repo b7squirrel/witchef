@@ -335,7 +335,7 @@ MonoBehaviour:
   distanceToRetreat: 7
   playerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   retreatCoolTime: 2
   retreatPoint: {fileID: 7444050164106655000}
   jumpForce: 8
@@ -344,7 +344,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  projectile: {fileID: 8243286581082906113, guid: 061b54978e2c05f449089fb8d162e04c, type: 3}
+  projectile: {fileID: 2653982588363610841, guid: 061b54978e2c05f449089fb8d162e04c, type: 3}
   shootAnticTime: 0.8
 --- !u!1 &7444050164934169143
 GameObject:
@@ -414,8 +414,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1012072145
-  m_SortingLayer: 0
+  m_SortingLayerID: 661229349
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -845045197500901298, guid: e1b0cc6f75e10624490f65da64dc590c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -509,3 +509,4 @@ MonoBehaviour:
   blinkingDuration: 0.2
   rolls: {fileID: 11400000, guid: a9167432554f7914cb2a276be13175f9, type: 2}
   inventory: {fileID: 0}
+  cookingSystem: {fileID: 0}

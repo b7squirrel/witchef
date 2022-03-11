@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e608eb5072dbf428b723a10116c379, type: 3}
+  m_Name: WarlockFF
+  m_EditorClassIdentifier: 
+  theRollType: 6
+  rollSprite: {fileID: 21300000, guid: b0249a34d09f2a744ac0cadf90fe2f40, type: 3}
+  rollPrefab: {fileID: 2090740167664202872, guid: 67e8c7fc839e63f4d84fb271f77c0a62, type: 3}

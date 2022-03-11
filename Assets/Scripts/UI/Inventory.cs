@@ -6,58 +6,71 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    public Slot[] slots;
-    public Slot outputSlot;  // 인스펙터에서 받기
-    public Rolls defaultRoll; // 인스펙터에서 받기
+    public Slot[] InputSlots;
+    public Slot outputSlot;  
+    public Rolls defaultRoll; 
 
     private void Awake()
     {
         instance = this;
     }
-
     void Start()
     {
-        slots = GetComponentsInChildren<Slot>();
+        InitInputSlots();
+        InitOutPutSlot();
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             for (int i = 0; i < 2; i++)
             {
-                Debug.Log(slots[i]);
+                Debug.Log("Input slot : " + InputSlots[i].GetRollType());
             }
+            Debug.Log("output slot : " + outputSlot.GetRollType());
         }
     }
-
-    public void AcquireRolls(Rolls roll)
+    public void GetInputRolls(Rolls _roll)
     {
         for (int i = 0; i < 2; i++)
         {
-            // 슬롯이 비어있으면
-            if (slots[i].GetRollType() == Rolls.rollType.None)
-            {
-                // roll을 슬롯에 입력
-                slots[i].AddInputRoll(roll);
-                return;
-            }
+            InputSlots[i].AddRoll(_roll);
         }
     }
-
-    public void AcquireOutPutUI(Rolls roll)
+    public void GetOutputRoll(Rolls _roll)
     {
-        outputSlot.ClearSlot();
-        outputSlot.AddRoll(roll);
+        outputSlot.AddRoll(_roll);
     }
-
-
-
+    public void GetSlotsReady(Rolls _roll)
+    {
+        // 슬롯을 초기화 하고 레시피와 비교할 수 있게 롤을 배치한다
+        InitInputSlots();
+        if(outputSlot.GetRollType() == Rolls.rollType.None)
+        {
+            outputSlot.AddRoll(_roll);
+            InputSlots[0].AddRoll(_roll);
+        }
+        else
+        {
+            InputSlots[0].AddRoll(outputSlot.GetRoll()); 
+            InputSlots[1].AddRoll(_roll);
+        }
+        InitOutPutSlot();
+    }
     public void ClearInventory()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < InputSlots.Length; i++)
         {
-            slots[i].AddInputRoll(defaultRoll);
+            InputSlots[i].AddRoll(defaultRoll);
         }
+    }
+    private void InitInputSlots()
+    {
+        InputSlots[0].AddRoll(defaultRoll);
+        InputSlots[1].AddRoll(defaultRoll);
+    }
+    private void InitOutPutSlot()
+    {
+        outputSlot.AddRoll(defaultRoll);
     }
 }

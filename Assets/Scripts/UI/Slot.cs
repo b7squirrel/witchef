@@ -7,40 +7,28 @@ public class Slot : MonoBehaviour
 {
     //»πµÊ«— æ∆¿Ã≈€
     public Rolls roll;
-    private Rolls.rollType _rollType;
-    public Image rollImage;
-    private Inventory inventory;
+    public Rolls defaultRoll;
+    public Image rollimage;
+    public void ClearSlot()
+    {
+        roll = defaultRoll;
+        roll.theRollType = defaultRoll.theRollType;
+        roll.rollSprite = defaultRoll.rollSprite;
+        rollimage.sprite = roll.rollSprite;
+    }
     public void AddRoll(Rolls _roll)
     {
         roll = _roll;
-        _rollType = _roll.theRollType;
-        rollImage.sprite = roll.rollSprite;
-        SetColor(1);
+        roll.theRollType = _roll.theRollType;
+        roll.rollSprite = _roll.rollSprite;
+        rollimage.sprite = roll.rollSprite;
     }
-
-    public void AddInputRoll(Rolls _roll)
-    {
-        roll = _roll;
-        _rollType = _roll.theRollType;
-    }
-
     public Rolls.rollType GetRollType()
     {
-        return _rollType;
+        return roll.theRollType;
     }
-
-    private void SetColor(float _alpha)
+    public Rolls GetRoll()
     {
-
-        Color color = rollImage.color;
-        color.a = _alpha;
-        rollImage.color = color;
-    }
-
-    public void ClearSlot()
-    {
-        roll = null;
-        rollImage.sprite = null;
-        SetColor(0);
+        return roll;
     }
 }

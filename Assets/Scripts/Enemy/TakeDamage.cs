@@ -85,7 +85,7 @@ public class TakeDamage : MonoBehaviour
     {
         AudioManager.instance.Play("GetRolled_01");
         GameObject roll = Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
-        inventory.AcquireRolls(rolls);
+        inventory.GetSlotsReady(rolls);
         cookingSystem.Cook();
         isStunned = false;
         isCaptured = false;

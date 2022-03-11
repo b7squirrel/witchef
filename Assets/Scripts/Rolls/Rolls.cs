@@ -15,7 +15,9 @@ public class Rolls : ScriptableObject
         ProjectileF,
         WarlockF,
         BombF01,
-        GoulF02
+        GoulF02,
+        WarlockFF,
+        ProjectileFF
     }
 
     public rollType theRollType;
