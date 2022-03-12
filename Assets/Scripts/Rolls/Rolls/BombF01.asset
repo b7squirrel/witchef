@@ -15,3 +15,4 @@ MonoBehaviour:
   theRollType: 4
   rollSprite: {fileID: 21300000, guid: 5a6be2949b128594384a53534d9ae4e7, type: 3}
   rollPrefab: {fileID: 7213455057005954572, guid: 5af9279d1b1094a4595c4820435f6faa, type: 3}
+  rollSize: 1

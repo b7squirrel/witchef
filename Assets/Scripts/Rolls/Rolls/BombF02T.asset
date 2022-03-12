@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e608eb5072dbf428b723a10116c379, type: 3}
+  m_Name: BombF02T
+  m_EditorClassIdentifier: 
+  theRollType: 14
+  rollSprite: {fileID: 21300000, guid: 3c83c4872738f674c82917be34daad9a, type: 3}
+  rollPrefab: {fileID: 7213455057005954572, guid: 18b5babd2f819df41ba091b0d077941a, type: 3}
+  rollSize: 2

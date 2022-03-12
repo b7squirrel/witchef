@@ -15,14 +15,23 @@ public class Rolls : ScriptableObject
         ProjectileF,
         WarlockF,
         BombF01,
+        BombF02,
+        BombF03,
         GoulF02,
+        GoulF03,
         WarlockFF,
-        ProjectileFF
+        WarlockFFF,
+        WarlockFFFF,
+        WarlockF02,
+        WarlockF03,
+        BombF02T,
+        BombF03T
     }
 
     public rollType theRollType;
     public Sprite rollSprite;
     public GameObject rollPrefab;
+    public int rollSize =1 ;
 
     
 }

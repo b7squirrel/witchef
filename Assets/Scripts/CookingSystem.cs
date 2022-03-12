@@ -65,28 +65,60 @@ public class CookingSystem : MonoBehaviour
         recipeDictionary[Rolls.rollType.GoulF] = recipe;
 
         recipe = new Rolls.rollType[2];
-        recipe[0] = Rolls.rollType.ProjectileF; recipe[1] = Rolls.rollType.None;
-        recipeDictionary[Rolls.rollType.ProjectileF] = recipe;
-
-        recipe = new Rolls.rollType[2];
-        recipe[0] = Rolls.rollType.WarlockF; recipe[1] = Rolls.rollType.None;
-        recipeDictionary[Rolls.rollType.WarlockF] = recipe;
-
-        recipe = new Rolls.rollType[2];
         recipe[0] = Rolls.rollType.GoulF; recipe[1] = Rolls.rollType.ProjectileF;
         recipeDictionary[Rolls.rollType.BombF01] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.BombF01; recipe[1] = Rolls.rollType.GoulF;
+        recipeDictionary[Rolls.rollType.BombF02] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.BombF02; recipe[1] = Rolls.rollType.GoulF;
+        recipeDictionary[Rolls.rollType.BombF03] = recipe;
 
         recipe = new Rolls.rollType[2];
         recipe[0] = Rolls.rollType.GoulF; recipe[1] = Rolls.rollType.GoulF;
         recipeDictionary[Rolls.rollType.GoulF02] = recipe;
 
         recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.GoulF02; recipe[1] = Rolls.rollType.GoulF;
+        recipeDictionary[Rolls.rollType.GoulF03] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.WarlockF; recipe[1] = Rolls.rollType.None;
+        recipeDictionary[Rolls.rollType.WarlockF] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.GoulF02; recipe[1] = Rolls.rollType.ProjectileF;
+        recipeDictionary[Rolls.rollType.BombF02T] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.GoulF03; recipe[1] = Rolls.rollType.ProjectileF;
+        recipeDictionary[Rolls.rollType.BombF03T] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.WarlockF; recipe[1] = Rolls.rollType.WarlockF;
+        recipeDictionary[Rolls.rollType.WarlockF02] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.WarlockF; recipe[1] = Rolls.rollType.WarlockFF;
+        recipeDictionary[Rolls.rollType.WarlockF03] = recipe;
+
+        recipe = new Rolls.rollType[2];
         recipe[0] = Rolls.rollType.WarlockF; recipe[1] = Rolls.rollType.ProjectileF;
         recipeDictionary[Rolls.rollType.WarlockFF] = recipe;
 
         recipe = new Rolls.rollType[2];
-        recipe[0] = Rolls.rollType.ProjectileF; recipe[1] = Rolls.rollType.ProjectileF;
-        recipeDictionary[Rolls.rollType.ProjectileFF] = recipe;
+        recipe[0] = Rolls.rollType.WarlockFF; recipe[1] = Rolls.rollType.ProjectileF;
+        recipeDictionary[Rolls.rollType.WarlockFFF] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.WarlockFFF; recipe[1] = Rolls.rollType.ProjectileF;
+        recipeDictionary[Rolls.rollType.WarlockFFFF] = recipe;
+
+        recipe = new Rolls.rollType[2];
+        recipe[0] = Rolls.rollType.ProjectileF; recipe[1] = Rolls.rollType.None;
+        recipeDictionary[Rolls.rollType.None] = recipe;
     }
 
     public Rolls.rollType GetRecipeOutput()
@@ -152,9 +184,9 @@ public class CookingSystem : MonoBehaviour
             
             //SO를 생성하고 RollManager에서 rollType에 해당하는 roll을 불러와서 연결해준다
             _outputRoll = ScriptableObject.CreateInstance<Rolls>();
-            CheckDoubleRoll(_outputRoll);
-            //_outputRoll.theRollType = recipeOutput;
             Rolls clone = RollManager.instance.GetRoll(recipeOutput);
+            ReviseOverlap(recipeOutput);
+
             _outputRoll = clone;
             _outputRoll.theRollType = clone.theRollType;
             _outputRoll.rollSprite = clone.rollSprite;
@@ -190,11 +222,15 @@ public class CookingSystem : MonoBehaviour
         }
     }
 
-    private void CheckDoubleRoll(Rolls _roll)
+    private void ReviseOverlap(Rolls.rollType _key)
     {
-        if(_roll.theRollType == Rolls.rollType.ProjectileFF)
+        if(_key == Rolls.rollType.BombF02T)
         {
-            _roll.theRollType = Rolls.rollType.ProjectileF;
+            _key = Rolls.rollType.BombF02;
+        }
+        if(_key == Rolls.rollType.BombF03T)
+        {
+            _key = Rolls.rollType.BombF03;
         }
     }
 }

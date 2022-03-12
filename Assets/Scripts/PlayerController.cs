@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     public float moveSpeed;
+    private float _initialMoveSpeed;
     public Rigidbody2D theRB;
     private Animator anim;
     private float currentDirection, previousDirection;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Jump")]
     public float jumpForce;
+    private float _initialJumpForce;
     public float jumpRememberTime;
     private float jumpRemember;
 
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         theRB = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         previousDirection = currentDirection;
+        _initialJumpForce = jumpForce;
+        _initialMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -142,6 +146,8 @@ public class PlayerController : MonoBehaviour
     public void ResetWeight()
     {
         weight = 0f;
+        jumpForce = _initialJumpForce;
+        moveSpeed = _initialMoveSpeed;
     }
 
     void SetAnimationState()

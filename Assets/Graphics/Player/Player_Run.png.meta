@@ -26,6 +26,12 @@ TextureImporter:
   - first:
       213: -1732827444613157014
     second: Player_Run_7
+  - first:
+      213: 959529608333098588
+    second: Player_Run_8
+  - first:
+      213: -6458370430407502735
+    second: Player_Run_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -57,8 +63,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -89,7 +95,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,7 +107,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -140,7 +146,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -161,7 +167,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -181,8 +187,8 @@ TextureImporter:
       name: Player_Run_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -202,8 +208,8 @@ TextureImporter:
       name: Player_Run_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -223,8 +229,8 @@ TextureImporter:
       name: Player_Run_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -244,7 +250,7 @@ TextureImporter:
       name: Player_Run_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -265,7 +271,7 @@ TextureImporter:
       name: Player_Run_7
       rect:
         serializedVersion: 2
-        x: 224
+        x: 32
         y: 0
         width: 32
         height: 32

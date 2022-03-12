@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93e608eb5072dbf428b723a10116c379, type: 3}
-  m_Name: ProjectileFF
+  m_Name: WarlockF02
   m_EditorClassIdentifier: 
-  theRollType: 7
-  rollSprite: {fileID: 21300000, guid: 1b5937ed2048ddd4ebec57c934037ae4, type: 3}
-  rollPrefab: {fileID: 3310541178204591009, guid: 7c90c000d2a4cec4ba4b4f95b978d99e, type: 3}
+  theRollType: 12
+  rollSprite: {fileID: 21300000, guid: 9ec075fc18b9e5840967148c2a551a1f, type: 3}
+  rollPrefab: {fileID: 4961687757381491889, guid: b461f0bfb2eace846b641953ffad0833, type: 3}
+  rollSize: 2
