@@ -173,6 +173,9 @@ public class CookingSystem : MonoBehaviour
     public void CreateOutput()
     {
         Rolls.rollType recipeOutput = GetRecipeOutput();
+        recipeOutput = ReviseOverlap(recipeOutput);
+        Debug.Log("그러므로 recipe output 의 키 값은 " + recipeOutput + "입니다.");
+
         if (recipeOutput == Rolls.rollType.None)
         {
             //레시피에 없는 조합이라면 null
@@ -181,16 +184,17 @@ public class CookingSystem : MonoBehaviour
         }
         else
         {
-            
             //SO를 생성하고 RollManager에서 rollType에 해당하는 roll을 불러와서 연결해준다
             _outputRoll = ScriptableObject.CreateInstance<Rolls>();
             Rolls clone = RollManager.instance.GetRoll(recipeOutput);
-            ReviseOverlap(recipeOutput);
+            
 
             _outputRoll = clone;
             _outputRoll.theRollType = clone.theRollType;
             _outputRoll.rollSprite = clone.rollSprite;
             _outputRoll.rollPrefab = clone.rollPrefab;
+            Debug.Log("==============================================");
+            Debug.Log("==============================================");
             Debug.Log("==============================================");
             Debug.Log("생성된 output Roll 타입은 " + _outputRoll);
 
@@ -222,7 +226,7 @@ public class CookingSystem : MonoBehaviour
         }
     }
 
-    private void ReviseOverlap(Rolls.rollType _key)
+    private Rolls.rollType ReviseOverlap(Rolls.rollType _key)
     {
         if(_key == Rolls.rollType.BombF02T)
         {
@@ -232,5 +236,7 @@ public class CookingSystem : MonoBehaviour
         {
             _key = Rolls.rollType.BombF03;
         }
+        Debug.Log("키 값이 " + _key + "로 바뀌었습니다.");
+        return _key;
     }
 }
