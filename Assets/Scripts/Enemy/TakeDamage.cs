@@ -56,7 +56,7 @@ public class TakeDamage : MonoBehaviour
             {
                 currentHP--;
                 AudioManager.instance.Play("pan_hit_04");
-                StartCoroutine(WhiteFlash());
+                //StartCoroutine(WhiteFlash());
                 //시간 멈추고 카메라쉐이크
                 GameManager.instance.StartCameraShake(4, .5f);
                 GameManager.instance.TimeStop(.02f);
@@ -81,6 +81,11 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
+    public void TempDebug()
+    {
+        Debug.Log("Take Damage");
+    }
+
     public void GetRolled()  // 롤을 생성하고 인벤토리에 롤타입을 표시
     {
         AudioManager.instance.Play("GetRolled_01");
@@ -93,8 +98,9 @@ public class TakeDamage : MonoBehaviour
         PlayerController.instance.WeightCalculation();
         HideEnemy();
     }
-    void Die()
+    public void Die()
     {
+        //StartCoroutine(WhiteFlash());
         Instantiate(dieEffect, transform.position, transform.rotation);
         AudioManager.instance.Play("Goul_Die_01");
         AudioManager.instance.Stop("Energy_01");
@@ -102,6 +108,7 @@ public class TakeDamage : MonoBehaviour
         isStunned = false;
         isCaptured = false;
         transform.parent.gameObject.SetActive(false);
+        
     }
     void HideEnemy()
     {

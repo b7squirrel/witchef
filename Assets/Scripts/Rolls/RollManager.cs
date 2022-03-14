@@ -17,7 +17,6 @@ public class RollManager : MonoBehaviour
 
     [Header("Temp Explosion")]
     public GameObject tempExplosion_small;
-    public LayerMask whatToExplode;
 
     private void Awake()
     {
@@ -45,6 +44,6 @@ public class RollManager : MonoBehaviour
         _roll.theRollProperty = GetRoll(_rollType).theRollProperty;
 
         var clone = Instantiate(tempExplosion_small, _point, transform.rotation);
-        clone.GetComponent<explosion>().DestroyArea();
+        clone.GetComponent<explosion>().DestroyArea(_roll.rollSize);
     }
 }

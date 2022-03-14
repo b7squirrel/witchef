@@ -131,7 +131,7 @@ public class CookingSystem : MonoBehaviour
                 isToSkipRecipeSlot[i] = false;
             }
             numberOfMatching = 0;
-            Debug.Log(">>>>>>>>>>>>>>>>>>레시피는 " + _recipeRollType);
+            //Debug.Log(">>>>>>>>>>>>>>>>>>레시피는 " + _recipeRollType);
 
             Rolls.rollType[] _recipeCheck = recipeDictionary[_recipeRollType];
             for (int i = 0; i < 2; i++)
@@ -142,16 +142,16 @@ public class CookingSystem : MonoBehaviour
                     {
                         if (isToSkiInputp[j] == false)
                         {
-                            Debug.Log("레시피 슬롯 " + i + " " + _recipeCheck[i]
-                                + " 과 input 슬롯 " + j + " " + _inventory.InputSlots[j].GetRollType() + " 비교결과 : ");
+                            //Debug.Log("레시피 슬롯 " + i + " " + _recipeCheck[i]
+                            //    + " 과 input 슬롯 " + j + " " + _inventory.InputSlots[j].GetRollType() + " 비교결과 : ");
 
                             if (_inventory.InputSlots[j].GetRollType() == _recipeCheck[i])
                             {
-                                Debug.Log("일치함");
+                                //Debug.Log("일치함");
                                 isToSkiInputp[j] = true;
                                 isToSkipRecipeSlot[i] = true;
-                                Debug.Log("is to skip input [" + j + "]" + isToSkiInputp[j]);
-                                Debug.Log("is to skip recipe slot [" + i + "]" + isToSkiInputp[i]);
+                                //Debug.Log("is to skip input [" + j + "]" + isToSkiInputp[j]);
+                                //Debug.Log("is to skip recipe slot [" + i + "]" + isToSkiInputp[i]);
                                 numberOfMatching++;
                                 if (numberOfMatching == 2)
                                 {
@@ -160,7 +160,7 @@ public class CookingSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("일치하지 않음");
+                                //Debug.Log("일치하지 않음");
                             }
                         }
                     }
@@ -174,12 +174,12 @@ public class CookingSystem : MonoBehaviour
     {
         Rolls.rollType recipeOutput = GetRecipeOutput();
         recipeOutput = ReviseOverlap(recipeOutput);
-        Debug.Log("그러므로 recipe output 의 키 값은 " + recipeOutput + "입니다.");
+        //Debug.Log("그러므로 recipe output 의 키 값은 " + recipeOutput + "입니다.");
 
         if (recipeOutput == Rolls.rollType.None)
         {
             //레시피에 없는 조합이라면 null
-            Debug.Log("없는 조합입니다.");
+            //Debug.Log("없는 조합입니다.");
             _outputRoll = null;
         }
         else
@@ -195,11 +195,11 @@ public class CookingSystem : MonoBehaviour
             _outputRoll.rollPrefab = clone.rollPrefab;
             _outputRoll.rollSize = clone.rollSize;
             _outputRoll.theRollProperty = clone.theRollProperty;
-            Debug.Log("==============================================");
-            Debug.Log("==============================================");
-            Debug.Log("==============================================");
-            Debug.Log("생성된 output Roll 타입은 " + _outputRoll);
-            Debug.Log("생성된 output Roll 크기는 " + _outputRoll.rollSize);
+            //Debug.Log("==============================================");
+            //Debug.Log("==============================================");
+            //Debug.Log("==============================================");
+            //Debug.Log("생성된 output Roll 타입은 " + _outputRoll);
+            //Debug.Log("생성된 output Roll 크기는 " + _outputRoll.rollSize);
 
             //프라이팬 위의 다른 roll들을 제거한다
             Collider2D[] _rollsOnPan = Physics2D.OverlapCircleAll(PlayerPanAttack.instance.panPoint.position,
@@ -239,7 +239,7 @@ public class CookingSystem : MonoBehaviour
         {
             _key = Rolls.rollType.BombF03;
         }
-        Debug.Log("키 값이 " + _key + "로 바뀌었습니다.");
+        //Debug.Log("키 값이 " + _key + "로 바뀌었습니다.");
         return _key;
     }
 }
