@@ -16,3 +16,4 @@ MonoBehaviour:
   rollSprite: {fileID: 21300000, guid: 3c83c4872738f674c82917be34daad9a, type: 3}
   rollPrefab: {fileID: 7213455057005954572, guid: 18b5babd2f819df41ba091b0d077941a, type: 3}
   rollSize: 2
+  theRollProperty: 1

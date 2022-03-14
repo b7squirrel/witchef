@@ -15,6 +15,10 @@ public class RollManager : MonoBehaviour
     public Rolls[] rollArray;
     Dictionary<Rolls.rollType, Rolls> rollDictionary;
 
+    [Header("Temp Explosion")]
+    public GameObject tempExplosion_small;
+    public LayerMask whatToExplode;
+
     private void Awake()
     {
         instance = this;
@@ -32,5 +36,15 @@ public class RollManager : MonoBehaviour
     public Rolls GetRoll(Rolls.rollType _rollType)
     {
         return rollDictionary[_rollType];
+    }
+
+    public void DestroyRoll(Rolls.rollType _rollType, Vector3 _point)
+    {
+        Rolls _roll = ScriptableObject.CreateInstance<Rolls>();
+        _roll.rollSize = GetRoll(_rollType).rollSize;
+        _roll.theRollProperty = GetRoll(_rollType).theRollProperty;
+
+        var clone = Instantiate(tempExplosion_small, _point, transform.rotation);
+        clone.GetComponent<explosion>().DestroyArea();
     }
 }

@@ -193,10 +193,13 @@ public class CookingSystem : MonoBehaviour
             _outputRoll.theRollType = clone.theRollType;
             _outputRoll.rollSprite = clone.rollSprite;
             _outputRoll.rollPrefab = clone.rollPrefab;
+            _outputRoll.rollSize = clone.rollSize;
+            _outputRoll.theRollProperty = clone.theRollProperty;
             Debug.Log("==============================================");
             Debug.Log("==============================================");
             Debug.Log("==============================================");
             Debug.Log("생성된 output Roll 타입은 " + _outputRoll);
+            Debug.Log("생성된 output Roll 크기는 " + _outputRoll.rollSize);
 
             //프라이팬 위의 다른 roll들을 제거한다
             Collider2D[] _rollsOnPan = Physics2D.OverlapCircleAll(PlayerPanAttack.instance.panPoint.position,

@@ -28,10 +28,18 @@ public class Rolls : ScriptableObject
         BombF03T
     }
 
+    public enum rollProperty
+    {
+        None,
+        Bomb
+    }
+
     public rollType theRollType;
     public Sprite rollSprite;
     public GameObject rollPrefab;
     public int rollSize =1 ;
+    public rollProperty theRollProperty;
+    
 
     
 }

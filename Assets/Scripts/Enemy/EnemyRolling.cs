@@ -20,6 +20,8 @@ public class EnemyRolling : MonoBehaviour
     public GameObject hitEffect;
     public Transform hitEffectPoint;
 
+    
+
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
@@ -85,6 +87,10 @@ public class EnemyRolling : MonoBehaviour
         {
             if(!isRolling)
             {
+                if (roll.theRollProperty == Rolls.rollProperty.Bomb)
+                {
+                    RollManager.instance.DestroyRoll(roll.theRollType, transform.position);
+                }
                 Destroy(gameObject);
             }
         }
