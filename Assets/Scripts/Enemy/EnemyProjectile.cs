@@ -17,12 +17,17 @@ public class EnemyProjectile : MonoBehaviour
     private bool isFlying; // parry 되어서 날아가는 상태. 아무것도 안함. 
 
     public bool isCaptured; // 캡쳐되었음을 전달 받고 이 스크립트에서 getRolled를 구현
+    private bool isGettingIn; // 캡쳐되어서 후라이팬 안으로 들어가는 단계
+    public float gettingInSpeed; // 팬 위로 올라가는 속도
 
     public Inventory inventory;
     public CookingSystem cookingSystem;
     public Rolls rolls;
     public GameObject sparkEffect;
     public GameObject smokeRed;
+    public GameObject debris;
+    private GameObject _smoke;
+    private GameObject _debris;
 
     private bool hit;
     public GameObject cube;
@@ -36,13 +41,28 @@ public class EnemyProjectile : MonoBehaviour
         isFlying = false;
         inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
         cookingSystem = FindObjectOfType<Inventory>().GetComponent<CookingSystem>();
+        _smoke = Instantiate(smokeRed, transform.position, Quaternion.identity);
+        _debris = Instantiate(debris, transform.position, Quaternion.identity);
     }
 
     void Update()
     {
-        if(isCaptured)
+        _smoke.transform.position = Vector2.MoveTowards(_smoke.transform.position,
+                transform.position, 5f);
+        _debris.transform.position = Vector2.MoveTowards(_debris.transform.position,
+    transform.position, 5f);
+
+        if (isCaptured)
         {
-            GetRolled();
+            if (isGettingIn)
+            {
+                GetIn();
+            }
+            else
+            {
+                GetRolled();
+            }
+            
         }
         else
         {
@@ -51,7 +71,6 @@ public class EnemyProjectile : MonoBehaviour
                 if (!isParried)
                 {
                     theRB.velocity = new Vector2(moveDirection.x, moveDirection.y);
-                    Instantiate(smokeRed, transform.position, Quaternion.identity);
                 }
                 else
                 {
@@ -66,6 +85,7 @@ public class EnemyProjectile : MonoBehaviour
                     theRB.gravityScale = 1f;
                     //Deflection();
                     Temp();
+                    
                     // 시간 멈추고 카메라 쉐이크
                     GameManager.instance.StartCameraShake(6, 1.3f);
                     GameManager.instance.TimeStop(.08f);
@@ -78,17 +98,17 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("HurtBoxPlayer"))
         {
-            Destroy(gameObject);
+            DestroyProjectile();
         }
         if (collision.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            DestroyProjectile();
         }
         if (collision.CompareTag("Enemy"))
         {
             if (this.gameObject.tag == "ProjectileDeflected")
             {
-                Destroy(gameObject);
+                DestroyProjectile();
             }
         }
     }
@@ -113,7 +133,6 @@ public class EnemyProjectile : MonoBehaviour
         Transform effectPoint = transform;
         effectPoint.position += new Vector3(2f, .7f, 0f);
         effectPoint.eulerAngles = new Vector3(transform.rotation.x, PlayerController.instance.transform.rotation.y, -10f);
-        //Instantiate(sparkEffect, effectPoint.position, effectPoint.rotation);
 
         theRB.velocity = CalculateVelecity(initialPoint, (Vector2)contactPoint, homingTime);
     }
@@ -143,11 +162,30 @@ public class EnemyProjectile : MonoBehaviour
         PlayerController.instance.WeightCalculation();
         inventory.GetSlotsReady(rolls);
         cookingSystem.Cook();
-        HideEnemy();
+
+        isGettingIn = true;
+        gameObject.tag = "Player";
     }
 
-    private void HideEnemy()
+    void GetIn()
     {
-        gameObject.SetActive(false);
+        if(Vector2.Distance(transform.position,
+            PlayerPanAttack.instance.panPoint.position) <= .1f)
+        {
+            DestroyProjectile();
+        }
+        else
+        {
+            Vector2.MoveTowards(transform.position,
+                PlayerPanAttack.instance.panPoint.position, gettingInSpeed);
+        }
+    }
+
+    private void DestroyProjectile()
+    {
+        isGettingIn = false;
+        Destroy(_smoke);
+        Destroy(_debris);
+        Destroy(gameObject);
     }
 }
