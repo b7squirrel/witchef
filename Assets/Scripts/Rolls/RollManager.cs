@@ -44,6 +44,8 @@ public class RollManager : MonoBehaviour
         _roll.theRollProperty = GetRoll(_rollType).theRollProperty;
 
         var clone = Instantiate(tempExplosion_small, _point, transform.rotation);
+        GameManager.instance.StartCameraShake(7, 1.5f);
+        GameManager.instance.TimeStop(.02f);
         clone.GetComponent<explosion>().DestroyArea(_roll.rollSize);
     }
 }

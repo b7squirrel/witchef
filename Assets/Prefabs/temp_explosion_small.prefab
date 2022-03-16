@@ -143,5 +143,6 @@ MonoBehaviour:
   explosionEffect: {fileID: 6875489578192507737, guid: 109ef7374084ea54a94950ee48187e13, type: 3}
   debris: {fileID: 187122873919782896, guid: 64c18b34fb810cc42b34bbadf415137b, type: 3}
   debrisDirt: {fileID: 2150629472456039725, guid: f8c2c940b4f2eaa4da644192fcd88134, type: 3}
+  debrisParticleEffect: {fileID: 5738631094860149647, guid: c3bb8c08a19e20e4d9b08d1b0bd94054, type: 3}
   explosionForce: 20
-  debrisOffsetPosition: 3
+  debrisOffsetPosition: 0.5

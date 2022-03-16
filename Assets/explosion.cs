@@ -16,12 +16,15 @@ public class explosion : MonoBehaviour
     [Header("Debris")]
     public GameObject debris;
     public GameObject debrisDirt;
+    public GameObject debrisParticleEffect;
     public float explosionForce;
     public float debrisOffsetPosition;
 
     public void DestroyArea(int _size)
     {
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        
+
         Vector2Int _boxColSize = new Vector2Int(Mathf.RoundToInt(Mathf.Pow(_size, 2) * 2), 
             Mathf.RoundToInt(Mathf.Pow(_size, 2) * 2 - _size));
         boxCol.size = new Vector2(_boxColSize.x, _boxColSize.y);
@@ -42,21 +45,38 @@ public class explosion : MonoBehaviour
                         _hit.GetComponent<Tiles>().RemoveTile(_cellPosition);
                         GenerateDebris(transform.position, _cellPosition);
                     }
-
-
                 }
             }
         }
     }
     private void GenerateDebris(Vector2 _expPoint, Vector2 _DebrisPoint)
     {
-        Vector2 _DebrisOffsetPosition = _DebrisPoint +
-            new Vector2(Random.Range(-debrisOffsetPosition, debrisOffsetPosition),
-            Random.Range(-debrisOffsetPosition, debrisOffsetPosition));
+        Instantiate(debrisParticleEffect, _DebrisPoint, Quaternion.identity);
 
-        var clone1 = Instantiate(debris, _DebrisOffsetPosition, Quaternion.identity);
-        Vector2 debrisDirection = _DebrisPoint - _expPoint;
-        clone1.GetComponent<Rigidbody2D>().AddForce(debrisDirection * explosionForce);
+        //Vector2 _DebrisOffsetPosition = _DebrisPoint +
+        //    new Vector2(Random.Range(-debrisOffsetPosition, debrisOffsetPosition),
+        //    Random.Range(-debrisOffsetPosition, debrisOffsetPosition));
+
+        //var clone1 = Instantiate(debris, _DebrisOffsetPosition, Quaternion.identity);
+        //Vector2 debrisDirection = _DebrisPoint - _expPoint;
+        //clone1.GetComponent<Rigidbody2D>().AddForce(debrisDirection * explosionForce);
+
+        //_DebrisOffsetPosition = _DebrisPoint +
+        //    new Vector2(Random.Range(-debrisOffsetPosition, debrisOffsetPosition),
+        //    Random.Range(-debrisOffsetPosition, debrisOffsetPosition));
+
+        //var clone2 = Instantiate(debrisDirt, _DebrisOffsetPosition, Quaternion.identity);
+        //debrisDirection = _DebrisPoint - _expPoint;
+        //clone1.GetComponent<Rigidbody2D>().AddForce(debrisDirection * explosionForce);
+
+        //_DebrisOffsetPosition = _DebrisPoint +
+        //    new Vector2(Random.Range(-debrisOffsetPosition, debrisOffsetPosition),
+        //    Random.Range(-debrisOffsetPosition, debrisOffsetPosition));
+
+        //var clone3 = Instantiate(debrisDirt, _DebrisOffsetPosition, Quaternion.identity);
+        //debrisDirection = _DebrisPoint - _expPoint;
+        //clone1.GetComponent<Rigidbody2D>().AddForce(debrisDirection * explosionForce);
+
     }
 
 

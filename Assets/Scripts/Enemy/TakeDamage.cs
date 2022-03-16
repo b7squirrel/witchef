@@ -81,13 +81,9 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    public void TempDebug()
-    {
-        Debug.Log("Take Damage");
-    }
-
     public void GetRolled()  // 롤을 생성하고 인벤토리에 롤타입을 표시
     {
+        AudioManager.instance.Stop("Energy_01");
         AudioManager.instance.Play("GetRolled_01");
         GameObject roll = Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         inventory.GetSlotsReady(rolls);

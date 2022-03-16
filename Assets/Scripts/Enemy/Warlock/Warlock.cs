@@ -115,6 +115,7 @@ public class Warlock : MonoBehaviour
     IEnumerator Shoot()
     {
         anim.Play("Warlock_Attack");
+        AudioManager.instance.Stop("Energy_01"); // 이전에 재생되고 있는 에너지 사운드를 중단
         AudioManager.instance.Play("Energy_01");
         yield return new WaitForSeconds(shootAnticTime);
         AudioManager.instance.Stop("Energy_01");
