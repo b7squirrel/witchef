@@ -23,7 +23,7 @@ public class PlayerPanAttack : MonoBehaviour
     public Inventory inventory;
     public RollSO rollso;
     public FlavorSo flavorSo;
-    
+
     public float CaptureTimer
     {
         get { return captureTimer; }
@@ -48,16 +48,16 @@ public class PlayerPanAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            //¹«ÇÑ Ä¸ÃÄ °¡´É
+            //ë¬´í•œ ìº¡ì³ ê°€ëŠ¥
             anim.Play("Player_Capture");
             captureTimer = captureDuration;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if(inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
+            if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
             {
-                anim.Play("Player_HitRoll");  // throwingAnticÀÌ ³¡³ª¸é throwingÀ¸·Î ³Ñ¾î°¨.
+                anim.Play("Player_HitRoll");  // throwingAnticì´ ëë‚˜ë©´ throwingìœ¼ë¡œ ë„˜ì–´ê°.
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -73,12 +73,12 @@ public class PlayerPanAttack : MonoBehaviour
         }
     }
 
-    // enemy´Â overlapBox·Î Ä¸ÃÄÇÏ°í projectileÀº playercaptureBox¿¡¼­ ontriggerenter2d·Î °¨ÁöÇØ¼­ Ä¸ÃÄÇÔ
-    // ¿À¹ö·¦Àº ³Ê¹« ¼ø°£ÀÌ¶ó¼­ projectileÀ» Àâ±â¿¡ ÀûÇÕÇÏÁö ¾ÊÀ½
-    void Capture() 
+    // enemyëŠ” overlapBoxë¡œ ìº¡ì³í•˜ê³  projectileì€ playercaptureBoxì—ì„œ ontriggerenter2dë¡œ ê°ì§€í•´ì„œ ìº¡ì³í•¨
+    // ì˜¤ë²„ë©ì€ ë„ˆë¬´ ìˆœê°„ì´ë¼ì„œ projectileì„ ì¡ê¸°ì— ì í•©í•˜ì§€ ì•ŠìŒ
+    void Capture()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(playerCaptureBox.boxCol.bounds.center, playerCaptureBox.boxCol.bounds.size, 0, enemyLayers);
-        if(hits != null)
+        if (hits != null)
         {
             foreach (Collider2D enemy in hits)
             {
@@ -87,14 +87,14 @@ public class PlayerPanAttack : MonoBehaviour
                     TakeDamage takeDmg = enemy.GetComponent<TakeDamage>();
                     if (takeDmg != null)
                     {
-                        
+
                         takeDmg.isCaptured = true;
                     }
                 }
             }
         }
     }
-    
+
     void HitRoll()
     {
         Collider2D[] hitRolls = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, rollLayers);
@@ -112,11 +112,11 @@ public class PlayerPanAttack : MonoBehaviour
                 inventory.ResetInventory();
             }
         }
-        
+
     }
     void Panning()
     {
-        // CaptureÀÇ ¸¶Áö¸· ÇÁ·¹ÀÓ¿¡¼­ ¾Ö´Ï¸ŞÀÌ¼Ç ÀÌº¥Æ®·Î ½ÇÇà
+        // Captureì˜ ë§ˆì§€ë§‰ í”„ë ˆì„ì—ì„œ ì• ë‹ˆë©”ì´ì…˜ ì´ë²¤íŠ¸ë¡œ ì‹¤í–‰
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Panning"))
         {
             if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)

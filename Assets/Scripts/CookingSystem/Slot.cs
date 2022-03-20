@@ -19,11 +19,15 @@ public class Slot : MonoBehaviour
         InitSlot();
     }
 
+    // 슬롯의 하위에 있는 이미지를 인스펙터에서 끌어왔으므로 그 이미지를 변경하려면 roll.rollsprite를 넣어준다
+    // 중간에 roll.rollsprite에 디폴트 스프라이트를 넣지 않고 바로 imageRoll.sprite에 디폴트 스프라이트를 넣어도 되지 않을까
+    // 그렇지만 일단 roll.rollSo에 정보를 모두 입력해 주어야 나중에 빼서 쓸 때 오류가 나지 않을 것 같다.
     public void AddRoll(RollSO _rollSo)
     {
         roll.rollSo = _rollSo;
         roll.rollSo.rollType = _rollSo.rollType;
-        imageRoll.sprite = _rollSo.rollSprite;
+        roll.rollSprite = _rollSo.rollSprite;
+        imageRoll.sprite = roll.rollSprite;
     }
 
     public Roll GetRoll()
@@ -35,7 +39,8 @@ public class Slot : MonoBehaviour
     {
         this.flavor.flavorSo = _flavorSo;
         flavor.flavorSo.flavorType = _flavorSo.flavorType;
-        imageFlavor.sprite = _flavorSo.flavorSprite;
+        flavor.flavorSprite = _flavorSo.flavorSprite;
+        imageFlavor.sprite = flavor.flavorSprite;
     }
 
     public Flavor GetFlavor()
@@ -45,12 +50,7 @@ public class Slot : MonoBehaviour
 
     public void InitSlot()
     {
-        roll.rollSo = defaultRollSo;
-        roll.rollSo.rollType = defaultRollSo.rollType;
-        roll.rollSprite = defaultRollSo.rollSprite;
-
-        flavor.flavorSo = defaultFlavorSo;
-        flavor.flavorSo.flavorType = defaultFlavorSo.flavorType;
-        flavor.flavorSprite = defaultFlavorSo.flavorSprite;
+        AddRoll(defaultRollSo);
+        AddFlavor(defaultFlavorSo);
     }
 }

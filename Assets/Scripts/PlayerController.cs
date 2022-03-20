@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         currentDirection = Input.GetAxisRaw("Horizontal");
 
-        // -1°ú 1¸¸ ÀÖ´Â staticDirection
+        // -1ê³¼ 1ë§Œ ìžˆëŠ” staticDirection
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             staticDirection = Input.GetAxisRaw("Horizontal");

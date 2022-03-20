@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// ì¸ìŠ¤í™í„°ì—ì„œ í¸í•˜ê²Œ ë“œë˜ê·¸í•´ì„œ ë„£ìœ¼ë ¤ê³  Roll prefab í´ë”ì— ìŠ¤í¬ë¦½íŠ¸ê°€ ìˆìŒ
+/// </summary>
 public class EnemyRolling : MonoBehaviour
 {
     private enum rollingState { rolling, shooting, flying, dropped };
@@ -10,9 +14,9 @@ public class EnemyRolling : MonoBehaviour
     public float followingPanSpeed;
     private Rigidbody2D theRB;
 
-    public bool isRolling; // ÆÒ À§¿¡¼­ µ¹°í ÀÖ´Â °æ¿ì
-    public bool beingHit;  // player pan attack¿¡¼­ ÂüÁ¶
-
+    public bool isRolling; // íŒ¬ ìœ„ì—ì„œ ëŒê³  ìˆëŠ” ê²½ìš°
+    public bool beingHit;  // player pan attackì—ì„œ ì°¸ì¡°
+    
     private float direction;
     public float initForce_x, initForce_y;
 
@@ -86,7 +90,7 @@ public class EnemyRolling : MonoBehaviour
         {
             if(!isRolling)
             {
-                // ·Ñ Å¸ÀÔ¿¡ µû¶ó Æø¹ßÀÇ Á¾·ù¿Í ±Ô¸ğ°¡ ´Ş¶óÁö´Â ÄÚµå¸¦ ³Ö¾î¾ß ÇÔ
+                // ë¡¤ íƒ€ì…ì— ë”°ë¼ í­ë°œì˜ ì¢…ë¥˜ì™€ ê·œëª¨ê°€ ë‹¬ë¼ì§€ëŠ” ì½”ë“œë¥¼ ë„£ì–´ì•¼ í•¨
                 Destroy(gameObject);
             }
         }
@@ -97,7 +101,7 @@ public class EnemyRolling : MonoBehaviour
         beingHit = false;
         isRolling = false;
         GameObject clone = Instantiate(hitEffect, hitEffectPoint.position, hitEffectPoint.rotation);
-        //½Ã°£ ¸ØÃß°í Ä«¸Ş¶ó½¦ÀÌÅ©
+        //ì‹œê°„ ë©ˆì¶”ê³  ì¹´ë©”ë¼ì‰ì´í¬
         GameManager.instance.StartCameraShake(8, .8f);
         GameManager.instance.TimeStop(.1f);
     }

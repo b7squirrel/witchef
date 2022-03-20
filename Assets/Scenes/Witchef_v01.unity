@@ -21336,6 +21336,8 @@ MonoBehaviour:
   hittingRollPoint: {fileID: 1218701383}
   captureDuration: 0.2
   inventory: {fileID: 536912791}
+  rollso: {fileID: 11400000, guid: 7786f313465a50441a19c196721aacdb, type: 2}
+  flavorSo: {fileID: 11400000, guid: 398028c4e1b6d6c4694034f891f8ba31, type: 2}
 --- !u!114 &2809493762570032324
 MonoBehaviour:
   m_ObjectHideFlags: 0

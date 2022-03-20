@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     private float shakeTimeRemaining, shakePower, shakeFadeTime;
     public Camera currentCamera;
     private bool isShakingCamera;
-    public int numberOfShake;   // Áøµ¿È½¼ö
-    public float shakingAmount;  // Áøµ¿Á¤µµ
+    public int numberOfShake;   // ì§„ë™íšŸìˆ˜
+    public float shakingAmount;  // ì§„ë™ì •ë„
 
     private void Awake()
     {
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
                 _currentShakingAmount = _shakingAmount;
             }
             
-            if(i % 2 == 0) // index°¡ È¦¼öÀÏ¶§´Â _currentShakingAmount¸¦ À½¼ö·Î Â¦¼öÀÏ ¶§´Â ¾ç¼ö·Î ÇØ¼­ ÁÂ¿ì·Î Èçµéµµ·Ï
+            if(i % 2 == 0) // indexê°€ í™€ìˆ˜ì¼ë•ŒëŠ” _currentShakingAmountë¥¼ ìŒìˆ˜ë¡œ ì§ìˆ˜ì¼ ë•ŒëŠ” ì–‘ìˆ˜ë¡œ í•´ì„œ ì¢Œìš°ë¡œ í”ë“¤ë„ë¡
             {
                 _currentShakingAmount = Mathf.Abs(_currentShakingAmount);
             }
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(.04f);
         }
     }
-    //  ½½·Î¿ì ¸ğ¼Ç
+    //  ìŠ¬ë¡œìš° ëª¨ì…˜
     public void TimeStop(float _stopTime)
     {
         if (!isStopping)
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         isStopping = false;
     }
 
-    // ÇÁ·¹ÀÓ·¹ÀÌÆ®
+    // í”„ë ˆì„ë ˆì´íŠ¸
     private void FixedUpdate()
     {
         if (target != Application.targetFrameRate)
@@ -142,14 +142,14 @@ public class GameManager : MonoBehaviour
         return probs.Length - 1;
     }
 
-    // ¸¶¿ì½º Ä¿¼­ ¼û±â±â
+    // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìˆ¨ê¸°ê¸°
     void HideMouseCursor()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // ¾À ¸®·Îµå
+    // ì”¬ ë¦¬ë¡œë“œ
     void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

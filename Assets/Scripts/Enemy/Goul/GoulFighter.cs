@@ -11,7 +11,7 @@ public class GoulFighter : MonoBehaviour
     private Rigidbody2D theRB;
 
     [Header("Detecting")]
-    public float distance; // raycast °Å¸® ¼³Á¤
+    public float distance; // raycast ê±°ë¦¬ ì„¤ì •
     public Transform castPoint;
     public LayerMask action;
 
@@ -23,8 +23,8 @@ public class GoulFighter : MonoBehaviour
     [Header("Follow")]
     public float moveSpeed;
     public float timeToStopFollowing;
-    private bool isDetecting; // ½Ã¾ß¿¡¼­ »ç¶óÁø ÇÃ·¹ÀÌ¾î¸¦ ¦i´Â ±¸°£À» À§ÇÑ ÇÃ·¡±×
-    private bool isSearching; // ÇÃ·¹ÀÌ¾î°¡ ½Ã¾ß¿¡¼­ »ç¶óÁ³°í isDetectingµµ falseÀÏ ¶§ stopFollowingPlayer ÇÔ¼ö¸¦ °è¼Ó È£ÃâÇÏ·Á µé¾î°¡Áö ¸øÇÏµµ·Ï ÇÏ´Â ÇÃ·¡±×
+    private bool isDetecting; // ì‹œì•¼ì—ì„œ ì‚¬ë¼ì§„ í”Œë ˆì´ì–´ë¥¼ ì«’ëŠ” êµ¬ê°„ì„ ìœ„í•œ í”Œë˜ê·¸
+    private bool isSearching; // í”Œë ˆì´ì–´ê°€ ì‹œì•¼ì—ì„œ ì‚¬ë¼ì¡Œê³  isDetectingë„ falseì¼ ë•Œ stopFollowingPlayer í•¨ìˆ˜ë¥¼ ê³„ì† í˜¸ì¶œí•˜ë ¤ ë“¤ì–´ê°€ì§€ ëª»í•˜ë„ë¡ í•˜ëŠ” í”Œë˜ê·¸
     private bool isChangingDirection;
 
     [Header("Stunned")]
@@ -80,9 +80,9 @@ public class GoulFighter : MonoBehaviour
                 {
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Goul_Fighter_Attack"))
                     {
-                        // °ø°İ ¸ğ¼Ç ÁßÀÌ¶ó¸é ±× ¸ğ¼ÇÀÌ ³¡ÀÌ ³¯ ¶§±îÁö ±â´Ù¸²
-                        // Attack ¸ğ¼ÇÀº ³¡ÀÌ³ª¸é walk ¸ğ¼ÇÀ¸·Î µé¾î°¨.
-                        // walk¸ğ¼ÇÀÌ Àç»ıµÇ°í ÀÖÁö¸¸ Follow°¡ ¾Æ´Ï¹Ç·Î Á¦ÀÚ¸®¿¡¼­ °È´Âµ¥ ÇÃ·¹ÀÌ¾î¿¡°Ô °ãÄ¥¸¸Å­ ´Ù°¡°¡Áö ¾Ê±â ¶§¹®¿¡ ÁÁ´Ù
+                        // ê³µê²© ëª¨ì…˜ ì¤‘ì´ë¼ë©´ ê·¸ ëª¨ì…˜ì´ ëì´ ë‚  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¼
+                        // Attack ëª¨ì…˜ì€ ëì´ë‚˜ë©´ walk ëª¨ì…˜ìœ¼ë¡œ ë“¤ì–´ê°.
+                        // walkëª¨ì…˜ì´ ì¬ìƒë˜ê³  ìˆì§€ë§Œ Followê°€ ì•„ë‹ˆë¯€ë¡œ ì œìë¦¬ì—ì„œ ê±·ëŠ”ë° í”Œë ˆì´ì–´ì—ê²Œ ê²¹ì¹ ë§Œí¼ ë‹¤ê°€ê°€ì§€ ì•Šê¸° ë•Œë¬¸ì— ì¢‹ë‹¤
                         currentState = enemyState.follow;
                     }
                     else
@@ -95,7 +95,7 @@ public class GoulFighter : MonoBehaviour
 
             case enemyState.follow:
 
-                attackCounter = 0f; // canAttack »óÅÂ°¡ µÇ¾úÀ» ¶§ ¹Ù·Î °ø°İÇÒ ¼ö ÀÖµµ·Ï ¹Ì¸® ÃÊ±âÈ­ ½ÃÄÑµÒ
+                attackCounter = 0f; // canAttack ìƒíƒœê°€ ë˜ì—ˆì„ ë•Œ ë°”ë¡œ ê³µê²©í•  ìˆ˜ ìˆë„ë¡ ë¯¸ë¦¬ ì´ˆê¸°í™” ì‹œì¼œë‘ 
 
                 if (canSeePlayer)
                 {
@@ -103,12 +103,12 @@ public class GoulFighter : MonoBehaviour
                 }
                 else
                 {
-                    if (isDetecting)  // ÇÃ·¹ÀÌ¾î°¡ ½Ã¾ß¿¡¼­ »ç¶óÁ³Áö¸¸ ¾ÆÁ÷ ÇÃ·¹ÀÌ¾î¸¦ ´À³¢°í ÀÖ´Ù¸é
+                    if (isDetecting)  // í”Œë ˆì´ì–´ê°€ ì‹œì•¼ì—ì„œ ì‚¬ë¼ì¡Œì§€ë§Œ ì•„ì§ í”Œë ˆì´ì–´ë¥¼ ëŠë¼ê³  ìˆë‹¤ë©´
                     {
                         if (!isSearching)
                         {
-                            // ÇÃ·¹ÀÌ¾î°¡ ½Ã¾ß¿¡¼­ »ç¶óÁö´õ¶óµµ ´çºĞ°£Àº ÇÃ·¹ÀÌ¾î¸¦ ¦i¾Æ´Ù´Ïµµ·Ï
-                            isSearching = true;  // stopFollowingPlayer ÄÚ·çÆ¾À¸·Î °è¼Ó µé¾î°¡¹ö¸®´Â °ÍÀ» ¹æÁö
+                            // í”Œë ˆì´ì–´ê°€ ì‹œì•¼ì—ì„œ ì‚¬ë¼ì§€ë”ë¼ë„ ë‹¹ë¶„ê°„ì€ í”Œë ˆì´ì–´ë¥¼ ì«’ì•„ë‹¤ë‹ˆë„ë¡
+                            isSearching = true;  // stopFollowingPlayer ì½”ë£¨í‹´ìœ¼ë¡œ ê³„ì† ë“¤ì–´ê°€ë²„ë¦¬ëŠ” ê²ƒì„ ë°©ì§€
                             StartCoroutine(StopFollowingPlayer());
                         }
                     }
@@ -169,7 +169,7 @@ public class GoulFighter : MonoBehaviour
     //animation events
     void ResetStunned()
     {
-        // playerParryBox¿¡ ÀÇÇØ untagged·Î ¹Ù²î¾ú´ø ÅÂÅ©¸¦ ´Ù½Ã AttackBoxEnemy·Î ¹Ù²Ş
+        // playerParryBoxì— ì˜í•´ untaggedë¡œ ë°”ë€Œì—ˆë˜ íƒœí¬ë¥¼ ë‹¤ì‹œ AttackBoxEnemyë¡œ ë°”ê¿ˆ
         takeDamage.isStunned = false;
         takeDamage.isRolling = false;
         isParried = false;
@@ -184,7 +184,7 @@ public class GoulFighter : MonoBehaviour
 
         if (isFacingLeft)
         {
-            // ½ºÇÁ¶óÀÌÆ®°¡ µÚÁıÈ÷¸é Lineµµ ¹İ´ë ¹æÇâÀ¸·Î ½îµµ·Ï
+            // ìŠ¤í”„ë¼ì´íŠ¸ê°€ ë’¤ì§‘íˆë©´ Lineë„ ë°˜ëŒ€ ë°©í–¥ìœ¼ë¡œ ì˜ë„ë¡
             _castDistance = -_castDistance;
         }
 
@@ -202,11 +202,11 @@ public class GoulFighter : MonoBehaviour
                 _canAttackPlayer = false;
             }
 
-            Debug.DrawLine(castPoint.position, hit.point, Color.red); // ÀÚ½ÅÀÇ ¾Õ¿¡ ¹«¾ùÀÎ°¡¸¦ °¨ÁöÇÏ¸é yellow
+            Debug.DrawLine(castPoint.position, hit.point, Color.red); // ìì‹ ì˜ ì•ì— ë¬´ì—‡ì¸ê°€ë¥¼ ê°ì§€í•˜ë©´ yellow
         }
         else
         {
-            Debug.DrawLine(castPoint.position, _endPosition, Color.yellow); // ¾Æ¹«°Íµµ °¨ÁöÇÏÁö ¸øÇÒ ¶§´Â blue
+            Debug.DrawLine(castPoint.position, _endPosition, Color.yellow); // ì•„ë¬´ê²ƒë„ ê°ì§€í•˜ì§€ ëª»í•  ë•ŒëŠ” blue
         }
 
         return _canAttackPlayer;
@@ -254,7 +254,7 @@ public class GoulFighter : MonoBehaviour
         {
             if (transform.position.x < PlayerController.instance.transform.position.x)
             {
-                // ÇÃ·¹ÀÌ¾îÀÇ ¿ŞÂÊ¿¡ ÀÖÀ¸¹Ç·Î ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇØ¾ß ÇÔ, ¿À¸¥ÂÊÀ¸·Î µ¹¾Æº¸µµ·Ï, ¿À¸¥ÂÊÀ¸·Î º¸°Ô µÇ¹Ç·Î isFacingLeft = false
+                // í”Œë ˆì´ì–´ì˜ ì™¼ìª½ì— ìˆìœ¼ë¯€ë¡œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™í•´ì•¼ í•¨, ì˜¤ë¥¸ìª½ìœ¼ë¡œ ëŒì•„ë³´ë„ë¡, ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë³´ê²Œ ë˜ë¯€ë¡œ isFacingLeft = false
                 isFacingLeft = false;
                 anim.Play("Goul_Fighter_Walk");
                 theRB.velocity = new Vector2(moveSpeed, theRB.velocity.y);
@@ -262,7 +262,7 @@ public class GoulFighter : MonoBehaviour
             }
             else if (transform.position.x > PlayerController.instance.transform.position.x)
             {
-                //ÇÃ·¹ÀÌ¾îÀÇ ¿À¸¥ÂÊ¿¡ ÀÖÀ¸¹Ç·Î ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇØ¾ß ÇÔ, ¿ŞÂÊÀ¸·Î µ¹¾Æº¸µµ·Ï
+                //í”Œë ˆì´ì–´ì˜ ì˜¤ë¥¸ìª½ì— ìˆìœ¼ë¯€ë¡œ ì™¼ìª½ìœ¼ë¡œ ì´ë™í•´ì•¼ í•¨, ì™¼ìª½ìœ¼ë¡œ ëŒì•„ë³´ë„ë¡
                 isFacingLeft = true;
                 anim.Play("Goul_Fighter_Walk");
                 theRB.velocity = new Vector2(-moveSpeed, theRB.velocity.y);

@@ -6,7 +6,7 @@ public class Warlock : MonoBehaviour
 {
     public float moveSpeed, retreatSpeed;
 
-    private bool isDetecting;  //ÇÃ·¹ÀÌ¾î¸¦ °¨Áö. °¡Àå ³ĞÀº ±¸°£
+    private bool isDetecting;  //í”Œë ˆì´ì–´ë¥¼ ê°ì§€. ê°€ì¥ ë„“ì€ êµ¬ê°„
     private bool isFacingRight;
 
     public float shootCoolTime;
@@ -17,7 +17,7 @@ public class Warlock : MonoBehaviour
     public float distanceToRetreat;
     public LayerMask playerMask;
 
-    private bool detectingPlayer;   //retreatÇØ¾ß ÇÏ´Â ÁöÁ¡±îÁö ÇÃ·¹ÀÌ¾î°¡ µé¾î¿ÔÀ» ¶§
+    private bool detectingPlayer;   //retreatí•´ì•¼ í•˜ëŠ” ì§€ì ê¹Œì§€ í”Œë ˆì´ì–´ê°€ ë“¤ì–´ì™”ì„ ë•Œ
     public float retreatCoolTime;
     private float retreatCounter;
     private Vector2 whereToRetreat;
@@ -25,7 +25,7 @@ public class Warlock : MonoBehaviour
     public float jumpForce;
     private bool isRetreating;
 
-    public Transform detectingWallPoint; // µÚ¿¡ º®ÀÌ ÀÖÀ¸¸é Á¡ÇÁÇÏÁö ¾Êµµ·Ï
+    public Transform detectingWallPoint; // ë’¤ì— ë²½ì´ ìˆìœ¼ë©´ ì í”„í•˜ì§€ ì•Šë„ë¡
     public float distanceToWall;
     private RaycastHit2D hitWall;
     public LayerMask groundMask;
@@ -46,11 +46,11 @@ public class Warlock : MonoBehaviour
     }
     void Update()
     {
-        if(GetComponentInChildren<TakeDamage>().isStunned)  // ½ºÅÏ »óÅÂ¶ó¸é °è¼Ó ÀÌ ¹İº¹¹®¿¡ ¸Ó¹°µµ·Ï
+        if(GetComponentInChildren<TakeDamage>().isStunned)  // ìŠ¤í„´ ìƒíƒœë¼ë©´ ê³„ì† ì´ ë°˜ë³µë¬¸ì— ë¨¸ë¬¼ë„ë¡
         {
             anim.Play("Warlock_Stunned");
         }
-        else // ½ºÅÏ »óÅÂ°¡ ¾Æ´Ï¶ó¸é ¾Æ·¡¸¦ ½ÇÇà
+        else // ìŠ¤í„´ ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ ì•„ë˜ë¥¼ ì‹¤í–‰
         {
             CheckingDistance();
             DetectingPlayer();
@@ -115,7 +115,7 @@ public class Warlock : MonoBehaviour
     IEnumerator Shoot()
     {
         anim.Play("Warlock_Attack");
-        AudioManager.instance.Stop("Energy_01"); // ÀÌÀü¿¡ Àç»ıµÇ°í ÀÖ´Â ¿¡³ÊÁö »ç¿îµå¸¦ Áß´Ü
+        AudioManager.instance.Stop("Energy_01"); // ì´ì „ì— ì¬ìƒë˜ê³  ìˆëŠ” ì—ë„ˆì§€ ì‚¬ìš´ë“œë¥¼ ì¤‘ë‹¨
         AudioManager.instance.Play("Energy_01");
         yield return new WaitForSeconds(shootAnticTime);
         AudioManager.instance.Stop("Energy_01");
@@ -177,7 +177,7 @@ public class Warlock : MonoBehaviour
                     retreatCounter = retreatCoolTime;
                     whereToRetreat = retreatPoint.position;
                     detectingPlayer = false;
-                    theRB.velocity = new Vector2(theRB.velocity.x, jumpForce); // ÇÃ·¹ÀÌ¾î¸¦ °¨ÁöÇÏ¸é yÃà ÃÊ±â¼Óµµ·Î ÇÑ ¹ø ÈûÀ» °¡ÇØÁÜ. 
+                    theRB.velocity = new Vector2(theRB.velocity.x, jumpForce); // í”Œë ˆì´ì–´ë¥¼ ê°ì§€í•˜ë©´ yì¶• ì´ˆê¸°ì†ë„ë¡œ í•œ ë²ˆ í˜ì„ ê°€í•´ì¤Œ. 
                 }
             }
         }

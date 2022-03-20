@@ -23,7 +23,7 @@ public class TakeDamage : MonoBehaviour
     private SpriteRenderer theSR;
     public float blinkingDuration;
 
-
+    
     private void Start()
     {
         currentHP = maxHP;

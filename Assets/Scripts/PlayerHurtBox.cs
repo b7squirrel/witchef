@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerHurtBox : MonoBehaviour
 {
     private Animator anim;
-    public int whichSideToBeHit; // dieEffectÀÇ ³¯¾Æ°¡´Â ¹æÇâÀ» Á¤ÇÏ±â À§ÇÔ
+    public int whichSideToBeHit; // dieEffectì˜ ë‚ ì•„ê°€ëŠ” ë°©í–¥ì„ ì •í•˜ê¸° ìœ„í•¨
     private bool isHitAfterParrying;
     private bool assumingBeingHit;
-    private bool isAttackBoxParried; // projectileÀÇ isAttackBoxParried¸¦ °¡Á®¿À±â À§ÇÑ ÇÃ·¡±×
+    private bool isAttackBoxParried; // projectileì˜ isAttackBoxParriedë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ í”Œë˜ê·¸
 
     private float waitingTime;
 

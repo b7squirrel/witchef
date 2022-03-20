@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     public float parryDuration;
     [HideInInspector] public float parryTimer;
 
-    private bool isAttacking; // ¾îÅÃ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Àç»ıµÇ´Â µ¿¾ÈÀº ´Ù¸¥ ¾îÅÃ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Àç»ıµÇÁö ¾Êµµ·Ï ÇÏ´Â ÇÃ·¡±×
+    private bool isAttacking; // ì–´íƒ ì• ë‹ˆë©”ì´ì…˜ì´ ì¬ìƒë˜ëŠ” ë™ì•ˆì€ ë‹¤ë¥¸ ì–´íƒ ì• ë‹ˆë©”ì´ì…˜ì´ ì¬ìƒë˜ì§€ ì•Šë„ë¡ í•˜ëŠ” í”Œë˜ê·¸
 
     public Inventory inventory;
 
@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
             attackTimer -= Time.deltaTime;
         }
 
-        //¾îÅÃ µ¿ÀÛÀÌ ºÎµæÀÌÇÏ°Ô µµÁß¿¡ Ãë¼ÒµÇ¾î attackboxOff°¡ ½ÇÇàµÇÁö ¾Ê¾ÒÀ» °æ¿ì¸¦ ´ëºñ
+        //ì–´íƒ ë™ì‘ì´ ë¶€ë“ì´í•˜ê²Œ ë„ì¤‘ì— ì·¨ì†Œë˜ì–´ attackboxOffê°€ ì‹¤í–‰ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°ë¥¼ ëŒ€ë¹„
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack"))
         {
             AttackBoxOff();
@@ -38,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if(inventory.InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // ÆĞ´× ÁßÀÏ ¶§´Â PanThrowing ÀÌ ¹ßµ¿µÇ¾ß ÇÏ´Ï±î °ø°İÀº ³ª°¡Áö ¾Ê°Ô
+            if(inventory.InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // íŒ¨ë‹ ì¤‘ì¼ ë•ŒëŠ” PanThrowing ì´ ë°œë™ë˜ì•¼ í•˜ë‹ˆê¹Œ ê³µê²©ì€ ë‚˜ê°€ì§€ ì•Šê²Œ
             {
                 if(attackTimer <= 0f)
                 {

@@ -39,16 +39,16 @@ public class CookingSystem : MonoBehaviour
         CreateFlavorOutput();
     }
 
-    // rollType bodyÀÇ °¹¼ö¸¦ Å½»ö
-    // 3°³ÀÇ body°¡ ¸ğµÎ °°Àº rollNameÀÎÁö Å½»ö
-    // rollType soulÀÇ °¹¼ö¸¦ Å½»ö
+    // rollType bodyì˜ ê°¯ìˆ˜ë¥¼ íƒìƒ‰
+    // 3ê°œì˜ bodyê°€ ëª¨ë‘ ê°™ì€ rollNameì¸ì§€ íƒìƒ‰
+    // rollType soulì˜ ê°¯ìˆ˜ë¥¼ íƒìƒ‰
     public void CreateRollOutput()
     {
-        // pan¿¡ ¿Ã¶ó¿Í ÀÖ´Â body°¡ ¾î¶² body typeÀ¸·Î ÀÏÄ¡ÇÏ´ÂÁö
+        // panì— ì˜¬ë¼ì™€ ìˆëŠ” bodyê°€ ì–´ë–¤ body typeìœ¼ë¡œ ì¼ì¹˜í•˜ëŠ”ì§€
         _rollNameOnPan = inventory.InputSlots[0].GetRoll().rollSo.rollType;
         
-        // body °¹¼ö, Å¸ÀÔ
-        // recipe¿¡¼­ °Ë»öÇØ¼­ output roll Ã£¾Æ³»±â
+        // body ê°¯ìˆ˜, íƒ€ì…
+        // recipeì—ì„œ ê²€ìƒ‰í•´ì„œ output roll ì°¾ì•„ë‚´ê¸°
         for (int i = 0; i < myRecipeRoll.recipeRoll.Length; i++)
         {
             if(myRecipeRoll.recipeRoll[i].rollType == _rollNameOnPan)
@@ -63,11 +63,11 @@ public class CookingSystem : MonoBehaviour
 
     public void CreateFlavorOutput()
     {
-        // pan¿¡ ¿Ã¶ó¿Í ÀÖ´Â flavor°¡ ¾î¶² flavor typeÀ¸·Î ÀÏÄ¡ÇÏ´ÂÁö
+        // panì— ì˜¬ë¼ì™€ ìˆëŠ” flavorê°€ ì–´ë–¤ flavor typeìœ¼ë¡œ ì¼ì¹˜í•˜ëŠ”ì§€
         _flavorNameOnPan = inventory.InputSlots[0].GetFlavor().flavorSo.flavorType;
 
-        // flavor °¹¼ö, Å¸ÀÔ 
-        // recipe¿¡¼­ °Ë»öÇØ¼­ output flavor Ã£¾Æ³»±â
+        // flavor ê°¯ìˆ˜, íƒ€ì… 
+        // recipeì—ì„œ ê²€ìƒ‰í•´ì„œ output flavor ì°¾ì•„ë‚´ê¸°
         for (int i = 0; i < myRecipeFlavor.recipeFlavor.Length; i++)
         {
             if (myRecipeFlavor.recipeFlavor[i].flavorType == _flavorNameOnPan)

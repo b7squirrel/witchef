@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public Slot[] InputSlots;
     public RollSO defaultRollSo;
     public FlavorSo defaultFlavorSo;
-
+    
     public int numberOfRolls = 0;
     public int numberOfFlavors = 0;
 
@@ -44,18 +44,18 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < numberOfRolls; i++)
             {
-                if (InputSlots[i].GetRoll().rollSo.rollType != _rollSo.rollType)  // ½½·ÔÀ» µ¹¸é¼­ ºñ±³ÇÏ´Ù°¡ ´Ù¸¥ rollÀÌ ³ª¿À¸é
+                if (InputSlots[i].GetRoll().rollSo.rollType != _rollSo.rollType)  // ìŠ¬ë¡¯ì„ ëŒë©´ì„œ ë¹„êµí•˜ë‹¤ê°€ ë‹¤ë¥¸ rollì´ ë‚˜ì˜¤ë©´
                 {
-                    for (int j = 0; j < InputSlots.Length; j++)  // ¸ðµç ½½·ÔÀ» default·Î ÃÊ±âÈ­ ÇÏ°í
+                    for (int j = 0; j < InputSlots.Length; j++)  // ëª¨ë“  ìŠ¬ë¡¯ì„ defaultë¡œ ì´ˆê¸°í™” í•˜ê³ 
                     {
                         InputSlots[j].AddRoll(defaultRollSo);
                     }
                     numberOfRolls = 0;
-                    return; // ±×¸®°í ÇÔ¼ö Á¾·á
+                    return; // ê·¸ë¦¬ê³  í•¨ìˆ˜ ì¢…ë£Œ
                 }
             }
         }
-        // ½½·ÔÀ» µ¹¸é¼­ ºñ±³Çß´Âµ¥ ¸ðµÎ Ä¸ÃÄÇÑ roll°ú °°Àº Å¸ÀÔÀÌ¶ó¸é
+        // ìŠ¬ë¡¯ì„ ëŒë©´ì„œ ë¹„êµí–ˆëŠ”ë° ëª¨ë‘ ìº¡ì³í•œ rollê³¼ ê°™ì€ íƒ€ìž…ì´ë¼ë©´
         foreach (Slot _slot in InputSlots)
         {
             if(_slot.GetRoll().rollSo.rollType == Roll.rollType.none)
@@ -69,7 +69,7 @@ public class Inventory : MonoBehaviour
 
     public void AcquireFlavor(FlavorSo _flavorSo)
     {
-        if (InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // ¹ÞÃÄÁÖ´Â rollÀÌ ¾øÀ¸¸é Á¦°Å
+        if (InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // ë°›ì³ì£¼ëŠ” rollì´ ì—†ìœ¼ë©´ ì œê±°
         {
             InputSlots[0].AddFlavor(defaultFlavorSo);
             return;
@@ -84,21 +84,21 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < numberOfFlavors; i++)
             {
-                if (InputSlots[i].GetFlavor().flavorSo.flavorType != _flavorSo.flavorType)  // ½½·ÔÀ» µ¹¸é¼­ ºñ±³ÇÏ´Ù°¡ ´Ù¸¥ flavor°¡ ³ª¿À¸é
+                if (InputSlots[i].GetFlavor().flavorSo.flavorType != _flavorSo.flavorType)  // ìŠ¬ë¡¯ì„ ëŒë©´ì„œ ë¹„êµí•˜ë‹¤ê°€ ë‹¤ë¥¸ flavorê°€ ë‚˜ì˜¤ë©´
                 {
-                    for (int j = 0; j < InputSlots.Length; j++)  // ¸ðµç ½½·ÔÀ» default·Î ÃÊ±âÈ­ ÇÏ°í
+                    for (int j = 0; j < InputSlots.Length; j++)  // ëª¨ë“  ìŠ¬ë¡¯ì„ defaultë¡œ ì´ˆê¸°í™” í•˜ê³ 
                     {
                         InputSlots[j].AddFlavor(defaultFlavorSo);
                     }
                     numberOfFlavors = 0;
 
-                    InputSlots[0].AddFlavor(_flavorSo); // Ã¹¹øÂ° ½½·Ô¿¡ Ä¸ÃÄÇÑ flavorSo ³ÖÀ½
+                    InputSlots[0].AddFlavor(_flavorSo); // ì²«ë²ˆì§¸ ìŠ¬ë¡¯ì— ìº¡ì³í•œ flavorSo ë„£ìŒ
                     numberOfFlavors++;
-                    return; // ±×¸®°í ÇÔ¼ö Á¾·á
+                    return; // ê·¸ë¦¬ê³  í•¨ìˆ˜ ì¢…ë£Œ
                 }
             }
         }
-        // ½½·ÔÀ» µ¹¸é¼­ ºñ±³Çß´Âµ¥ ¸ðµÎ Ä¸ÃÄÇÑ flavor¿Í °°Àº Å¸ÀÔÀÌ¶ó¸é
+        // ìŠ¬ë¡¯ì„ ëŒë©´ì„œ ë¹„êµí–ˆëŠ”ë° ëª¨ë‘ ìº¡ì³í•œ flavorì™€ ê°™ì€ íƒ€ìž…ì´ë¼ë©´
         foreach (Slot _slot in InputSlots)
         {
             if (_slot.GetFlavor().flavorSo.flavorType == Flavor.flavorType.none)

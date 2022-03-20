@@ -164,7 +164,7 @@ public class EnemyProjectile : MonoBehaviour
         isGettingIn = true;
         gameObject.tag = "Player";
     }
-
+    
     void GetIn()
     {
         if(Vector2.Distance(transform.position,
