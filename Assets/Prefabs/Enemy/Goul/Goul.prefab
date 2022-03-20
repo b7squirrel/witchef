@@ -76,12 +76,10 @@ MonoBehaviour:
   isRolling: 0
   dieEffect: {fileID: 6987084327100221053, guid: 036f43595c5bb0743a94c6b3227bc1f5, type: 3}
   isCaptured: 0
+  rollSo: {fileID: 11400000, guid: 3b4a2007186b53344ab578941dcd2845, type: 2}
   whiteMat: {fileID: 2100000, guid: 8ec93e96670acbe42ad1c1e3ea6e9768, type: 2}
   mSprite: {fileID: 6493158245600938859}
   blinkingDuration: 0.2
-  rolls: {fileID: 11400000, guid: 4928d68c8ffee8547924cc486aad6210, type: 2}
-  inventory: {fileID: 0}
-  cookingSystem: {fileID: 0}
 --- !u!1 &6493158245600938859
 GameObject:
   m_ObjectHideFlags: 0

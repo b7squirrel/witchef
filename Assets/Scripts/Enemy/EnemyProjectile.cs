@@ -10,19 +10,18 @@ public class EnemyProjectile : MonoBehaviour
     private Vector2 moveDirection;
     private Rigidbody2D theRB;
 
-    private Vector2 initialPoint; // parry µÇ¾úÀ» ¶§ ´Ù½Ã µÇµ¹¾Æ ¿À±â À§ÇÑ À§Ä¡°ª
-    public Vector2 contactPoint; // parry µÈ ÁöÁ¡À» ½ÃÀÛÁ¡À¸·Î ÇÏ±â À§ÇÑ º¯¼ö
-    public bool isParried; // projectileÀÌ ¹ß»çµÇ¾ú´ÂÁö parry µÇ¾ú´ÂÁö ÆÇ´Ü
-    public float homingTime; // ¹İ»çµÇ¾î¼­ Å¸°Ù¿¡ µµ´ŞÇÏ±â±îÁö °É¸®´Â ½Ã°£
-    private bool isFlying; // parry µÇ¾î¼­ ³¯¾Æ°¡´Â »óÅÂ. ¾Æ¹«°Íµµ ¾ÈÇÔ. 
+    private Vector2 initialPoint; // parry ë˜ì—ˆì„ ë•Œ ë‹¤ì‹œ ë˜ëŒì•„ ì˜¤ê¸° ìœ„í•œ ìœ„ì¹˜ê°’
+    public Vector2 contactPoint; // parry ëœ ì§€ì ì„ ì‹œì‘ì ìœ¼ë¡œ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    public bool isParried; // projectileì´ ë°œì‚¬ë˜ì—ˆëŠ”ì§€ parry ë˜ì—ˆëŠ”ì§€ íŒë‹¨
+    public float homingTime; // ë°˜ì‚¬ë˜ì–´ì„œ íƒ€ê²Ÿì— ë„ë‹¬í•˜ê¸°ê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„
+    private bool isFlying; // parry ë˜ì–´ì„œ ë‚ ì•„ê°€ëŠ” ìƒíƒœ. ì•„ë¬´ê²ƒë„ ì•ˆí•¨. 
 
-    public bool isCaptured; // Ä¸ÃÄµÇ¾úÀ½À» Àü´Ş ¹Ş°í ÀÌ ½ºÅ©¸³Æ®¿¡¼­ getRolled¸¦ ±¸Çö
-    private bool isGettingIn; // Ä¸ÃÄµÇ¾î¼­ ÈÄ¶óÀÌÆÒ ¾ÈÀ¸·Î µé¾î°¡´Â ´Ü°è
-    public float gettingInSpeed; // ÆÒ À§·Î ¿Ã¶ó°¡´Â ¼Óµµ
+    public bool isCaptured; // ìº¡ì³ë˜ì—ˆìŒì„ ì „ë‹¬ ë°›ê³  ì´ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ getRolledë¥¼ êµ¬í˜„
+    private bool isGettingIn; // ìº¡ì³ë˜ì–´ì„œ í›„ë¼ì´íŒ¬ ì•ˆìœ¼ë¡œ ë“¤ì–´ê°€ëŠ” ë‹¨ê³„
+    public float gettingInSpeed; // íŒ¬ ìœ„ë¡œ ì˜¬ë¼ê°€ëŠ” ì†ë„
 
-    public Inventory inventory;
-    public CookingSystem cookingSystem;
-    public Rolls rolls;
+    public FlavorSo flavorSo;
+
     public GameObject sparkEffect;
     public GameObject smokeRed;
     public GameObject debris;
@@ -39,8 +38,6 @@ public class EnemyProjectile : MonoBehaviour
         initialPoint = new Vector2(transform.position.x, transform.position.y - 1f);
         isParried = false;
         isFlying = false;
-        inventory = FindObjectOfType<Inventory>().GetComponent<Inventory>();
-        cookingSystem = FindObjectOfType<Inventory>().GetComponent<CookingSystem>();
         _smoke = Instantiate(smokeRed, transform.position, Quaternion.identity);
         _debris = Instantiate(debris, transform.position, Quaternion.identity);
     }
@@ -60,7 +57,10 @@ public class EnemyProjectile : MonoBehaviour
             }
             else
             {
-                GetRolled();
+                if(Inventory.instance.numberOfFlavors < 3) // ì¼ë‹¨ flavorë„ ìº¡ì³ëŠ” í–ˆë‹¤ê°€ ë°›ì³ì£¼ëŠ” rollì´ ì—†ìœ¼ë©´ inventoryì—ì„œ ì œê±°
+                {
+                    GetFlavored();
+                }
             }
             
         }
@@ -83,10 +83,8 @@ public class EnemyProjectile : MonoBehaviour
                     }
                     isFlying = true;
                     theRB.gravityScale = 1f;
-                    //Deflection();
                     Temp();
                     
-                    // ½Ã°£ ¸ØÃß°í Ä«¸Ş¶ó ½¦ÀÌÅ©
                     GameManager.instance.StartCameraShake(6, 1.3f);
                     GameManager.instance.TimeStop(.08f);
                 }
@@ -154,14 +152,14 @@ public class EnemyProjectile : MonoBehaviour
         theRB.velocity = new Vector2(direc * moveSpeed / 12, 12f);
     }
 
-    void GetRolled()
+    void GetFlavored()
     {
         AudioManager.instance.Play("GetRolled_01");
-        Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
+        // Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         PlayerController.instance.weight++;
         PlayerController.instance.WeightCalculation();
-        inventory.GetSlotsReady(rolls);
-        cookingSystem.Cook();
+        Inventory.instance.AcquireFlavor(flavorSo);
+        CookingSystem.instance.Flavor();
 
         isGettingIn = true;
         gameObject.tag = "Player";

@@ -504,9 +504,7 @@ MonoBehaviour:
   isRolling: 0
   dieEffect: {fileID: 6987084327100221053, guid: 036f43595c5bb0743a94c6b3227bc1f5, type: 3}
   isCaptured: 0
+  rollSo: {fileID: 11400000, guid: 0ca4c343adfc845469173fb00ba80984, type: 2}
   whiteMat: {fileID: 2100000, guid: 8ec93e96670acbe42ad1c1e3ea6e9768, type: 2}
   mSprite: {fileID: 7444050164934169143}
   blinkingDuration: 0.2
-  rolls: {fileID: 11400000, guid: a9167432554f7914cb2a276be13175f9, type: 2}
-  inventory: {fileID: 0}
-  cookingSystem: {fileID: 0}

@@ -13,7 +13,8 @@ public class TakeDamage : MonoBehaviour
     public GameObject dieEffect;
 
     [Header("Rolling")]
-    public bool isCaptured;  // 이 변수로 capture되었음을 전달 받고 GetRolled를 진행시킴
+    public bool isCaptured;
+    public RollSO rollSo;
 
     [Header("White Flash")]
     public Material whiteMat;
@@ -22,32 +23,23 @@ public class TakeDamage : MonoBehaviour
     private SpriteRenderer theSR;
     public float blinkingDuration;
 
-    [Header("Roll Type")]
-    public Rolls rolls;
-
-    [Header("Inventory")]
-    public Inventory inventory;
-    public CookingSystem cookingSystem;
 
     private void Start()
     {
         currentHP = maxHP;
         theSR = mSprite.GetComponent<SpriteRenderer>();
         initialMat = theSR.material;
-        cookingSystem = FindObjectOfType<Inventory>().GetComponent<CookingSystem>();
 
     }
     private void Update()
     {
         if (isCaptured)
         {
+            if(Inventory.instance.numberOfRolls < 3)
             GetRolled();
         }
     }
-    // hp가 0이 되면 스턴 애니메이션 재생
-    // 스턴 상태에서는 hp가 깎이지 않음
-    // 스턴 상태에서 PanAttack이 들어오면 GetRolled 실행
-    // 롤을 맞으면 일단 distroy
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("AttackBoxPlayer"))
@@ -56,16 +48,12 @@ public class TakeDamage : MonoBehaviour
             {
                 currentHP--;
                 AudioManager.instance.Play("pan_hit_04");
-                //StartCoroutine(WhiteFlash());
-                //시간 멈추고 카메라쉐이크
                 GameManager.instance.StartCameraShake(4, .5f);
                 GameManager.instance.TimeStop(.02f);
 
                 if (currentHP <= 0f)
                 {
                     AudioManager.instance.Play("pan_hit_05");
-                    //isStunned = true;
-                    //currentHP = maxHP;
                     Die();
                 }
             }
@@ -81,13 +69,13 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    public void GetRolled()  // 롤을 생성하고 인벤토리에 롤타입을 표시
+    public void GetRolled()  
     {
         AudioManager.instance.Stop("Energy_01");
         AudioManager.instance.Play("GetRolled_01");
-        GameObject roll = Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
-        inventory.GetSlotsReady(rolls);
-        cookingSystem.Cook();
+        Inventory.instance.AcquireRoll(rollSo);
+        CookingSystem.instance.Roll();
+
         isStunned = false;
         isCaptured = false;
         PlayerController.instance.weight++;
@@ -96,7 +84,6 @@ public class TakeDamage : MonoBehaviour
     }
     public void Die()
     {
-        //StartCoroutine(WhiteFlash());
         Instantiate(dieEffect, transform.position, transform.rotation);
         AudioManager.instance.Play("Goul_Die_01");
         AudioManager.instance.Stop("Energy_01");

@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
 
     private bool isAttacking; // 어택 애니메이션이 재생되는 동안은 다른 어택 애니메이션이 재생되지 않도록 하는 플래그
 
+    public Inventory inventory;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -36,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if(!PlayerPanAttack.instance.enemyLoaded)  // 패닝 중일 때는 PanThrowing 이 발동되야 하니까 공격은 나가지 않게
+            if(inventory.InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // 패닝 중일 때는 PanThrowing 이 발동되야 하니까 공격은 나가지 않게
             {
                 if(attackTimer <= 0f)
                 {
