@@ -42,7 +42,7 @@ public class TakeDamage : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("AttackBoxPlayer"))
+        if (collision.CompareTag("AttackBoxPlayer") || collision.CompareTag("Rolling"))
         {
             if(!isStunned)
             {
@@ -56,15 +56,6 @@ public class TakeDamage : MonoBehaviour
                     AudioManager.instance.Play("pan_hit_05");
                     Die();
                 }
-            }
-        }
-
-        if(collision.CompareTag("Rolling"))
-        {
-            if(!collision.GetComponent<EnemyRolling>().isRolling)
-            {
-                Die();
-
             }
         }
     }
@@ -90,7 +81,8 @@ public class TakeDamage : MonoBehaviour
         currentHP = maxHP;
         isStunned = false;
         isCaptured = false;
-        transform.parent.gameObject.SetActive(false);
+        Destroy(transform.parent.gameObject);
+        //transform.parent.gameObject.SetActive(false);
         
     }
     void HideEnemy()

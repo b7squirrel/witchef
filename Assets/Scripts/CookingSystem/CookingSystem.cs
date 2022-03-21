@@ -9,13 +9,18 @@ public class CookingSystem : MonoBehaviour
     Inventory inventory;
     RecipeRoll myRecipeRoll;
     RecipeFlavor myRecipeFlavor;
-    RollSO outputRoll;
-    FlavorSo outputFlavor;
+    public RollSO outputRoll;
+    public FlavorSo outputFlavor;
+
+    public RollSO defaultRollSo;
+    public FlavorSo defaultFlavorSo;
 
     Roll.rollType _rollNameOnPan;
     Flavor.flavorType _flavorNameOnPan;
 
     public Transform panPoint;
+    public LayerMask rollLayer;
+    public LayerMask flavorLayer;
 
     private void Awake()
     {
@@ -27,6 +32,22 @@ public class CookingSystem : MonoBehaviour
         inventory = GetComponent<Inventory>();
         myRecipeRoll = GetComponent<RecipeRoll>();
         myRecipeFlavor = GetComponent<RecipeFlavor>();
+        panPoint = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().panPoint;
+        rollLayer = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().rollLayers;
+    }
+
+    private void Update()
+    {
+        Collider2D[] checkRoll = Physics2D.OverlapCircleAll(panPoint.position, .3f, rollLayer);
+        if(checkRoll != null)
+        {
+            int _numberOfRollOnPan = 0;
+            foreach (var item in checkRoll)
+            {
+                _numberOfRollOnPan++;
+            }
+            Debug.Log("Roll Game Object on the pan = " + _numberOfRollOnPan);
+        }
     }
 
     public void Roll()
@@ -55,7 +76,16 @@ public class CookingSystem : MonoBehaviour
             {
                 outputRoll = myRecipeRoll.recipeRoll[i];
                 outputRoll.rollType = myRecipeRoll.recipeRoll[i].rollType;
-                Instantiate(outputRoll.rollPrefab[inventory.numberOfRolls - 1], panPoint.position, Quaternion.identity);
+                Collider2D[] _checkRoll = Physics2D.OverlapCircleAll(panPoint.position, .3f, rollLayer);
+                if(_checkRoll != null)
+                {
+                    foreach (var item in _checkRoll)
+                    {
+                        Destroy(item.gameObject);
+                    }
+                }
+
+                GameObject _roll = Instantiate(outputRoll.rollPrefab[inventory.numberOfRolls - 1], panPoint.position, Quaternion.identity);
                 return;
             }
         }
@@ -74,11 +104,25 @@ public class CookingSystem : MonoBehaviour
             {
                 outputFlavor = myRecipeFlavor.recipeFlavor[i];
                 outputFlavor.flavorType = myRecipeFlavor.recipeFlavor[i].flavorType;
-                var _flavor = Instantiate(outputFlavor.flavorPrefab[inventory.numberOfFlavors - 1], panPoint.position, Quaternion.identity);
-                
+
+                Collider2D[] _checkFlavor = Physics2D.OverlapCircleAll(panPoint.position, .3f, flavorLayer);
+                if (_checkFlavor != null)
+                {
+                    foreach (var item in _checkFlavor)
+                    {
+                        Destroy(item.gameObject);
+                    }
+                }
+
+                GameObject _flavor = Instantiate(outputFlavor.flavorPrefab[inventory.numberOfFlavors - 1], panPoint.position, Quaternion.identity);
                 return;
             }
         }
     }
 
+    public void ResetOutputs()
+    {
+        inventory.numberOfFlavors = 0;
+        inventory.numberOfRolls = 0;
+    }
 }

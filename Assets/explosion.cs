@@ -20,24 +20,38 @@ public class explosion : MonoBehaviour
     public float explosionForce;
     public float debrisOffsetPosition;
 
+    private Vector3 boxSize;
+
+    public GameObject debugDot;
+
+    private void Start()
+    {
+        boxCol = GetComponent<BoxCollider2D>();
+    }
+
     public void DestroyArea(int _size)
     {
+         
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         
 
         Vector2Int _boxColSize = new Vector2Int(Mathf.RoundToInt(Mathf.Pow(_size, 2) * 2), 
             Mathf.RoundToInt(Mathf.Pow(_size, 2) * 2 - _size));
         boxCol.size = new Vector2(_boxColSize.x, _boxColSize.y);
-        
+        boxSize = new Vector3(boxCol.size.x, boxCol.size.y, 1);
+
+
         for (int i = -_boxColSize.x/2; i <= _boxColSize.x/2; i++)
         {
             for (int j = -_boxColSize.y/2; j <= _boxColSize.y/2; j++)
             {
                 Vector3 _cellPosition = 
                     new Vector3(transform.position.x + i, transform.position.y + j, 0);
+
+                Instantiate(debugDot, _cellPosition, Quaternion.identity);
                 
 
-                Collider2D _hit = Physics2D.OverlapCircle(_cellPosition, .01f, whatToDestroy);
+                Collider2D _hit = Physics2D.OverlapCircle(_cellPosition, .02f, whatToDestroy);
                 if (_hit != null)
                 {
                     if(_hit.gameObject.layer == 8)  // ground layer
@@ -45,9 +59,15 @@ public class explosion : MonoBehaviour
                         _hit.GetComponent<Tiles>().RemoveTile(_cellPosition);
                         GenerateDebris(transform.position, _cellPosition);
                     }
+                    
                 }
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, boxSize);
     }
     private void GenerateDebris(Vector2 _expPoint, Vector2 _DebrisPoint)
     {
@@ -77,11 +97,5 @@ public class explosion : MonoBehaviour
         //debrisDirection = _DebrisPoint - _expPoint;
         //clone1.GetComponent<Rigidbody2D>().AddForce(debrisDirection * explosionForce);
 
-    }
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(boxCol.bounds.center, boxCol.size);
     }
 }

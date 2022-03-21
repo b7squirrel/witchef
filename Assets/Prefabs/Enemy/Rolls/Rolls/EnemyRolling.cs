@@ -23,13 +23,15 @@ public class EnemyRolling : MonoBehaviour
     public GameObject hitEffect;
     public Transform hitEffectPoint;
 
-    
+    public int numberOfRolls;
+    explosion _explosion;
 
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
         currentState = rollingState.rolling;
         isRolling = true;
+        _explosion = GetComponent<explosion>();
     }
 
     void Update()
@@ -67,8 +69,6 @@ public class EnemyRolling : MonoBehaviour
                 //transform.parent = null;
                 //theRB.gravityScale = 5;
                 break;
-
-                
         }
     }
 
@@ -90,7 +90,11 @@ public class EnemyRolling : MonoBehaviour
         {
             if(!isRolling)
             {
-                // 롤 타입에 따라 폭발의 종류와 규모가 달라지는 코드를 넣어야 함
+                //Debug.Log("Roll Type = " + rollSO.rollType);
+                //Debug.Log("Number of Rolls = " + rollSO.numberOfRolls);
+                //Debug.Log("Flavor Type = " + flavorSo.flavorType);
+                //Debug.Log("Number of Flaver = " + flavorSo.numberOfFlavors);
+                _explosion.DestroyArea(numberOfRolls);
                 Destroy(gameObject);
             }
         }

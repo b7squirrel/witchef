@@ -17,7 +17,7 @@ public class PlayerCaptureBox : MonoBehaviour
         {
             if (PlayerPanAttack.instance.CaptureTimer > 0)
             {
-                if (Inventory.instance.numberOfRolls < 3)
+                if (Inventory.instance.numberOfFlavors < 3)
                 {
                     collision.GetComponent<EnemyProjectile>().isCaptured = true;
                 }

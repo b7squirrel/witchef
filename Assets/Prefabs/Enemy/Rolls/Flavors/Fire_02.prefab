@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4019095362779590247}
   - component: {fileID: -1065506111567161314}
   - component: {fileID: 7726738472057526647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fire_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bf89831abbc4b49b888afe97c7b6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roll:
+  rollLayer:
     serializedVersion: 2
     m_Bits: 64
+  numberOfFlavor: 2

@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public class EnemyFlavor : MonoBehaviour
 {
-    public LayerMask roll;
+    public LayerMask rollLayer;
+    public int numberOfFlavor;
 
     private void Awake()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, .2f, roll);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, .2f, rollLayer);
         if(hit != null)
         {
             transform.parent = hit.transform;

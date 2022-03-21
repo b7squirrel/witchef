@@ -75,6 +75,7 @@ public class PlayerPanAttack : MonoBehaviour
 
     // enemy는 overlapBox로 캡쳐하고 projectile은 playercaptureBox에서 ontriggerenter2d로 감지해서 캡쳐함
     // 오버랩은 너무 순간이라서 projectile을 잡기에 적합하지 않음
+    // 캡쳐 함수는 애니메이션 이벤트로 실행
     void Capture()
     {
         Collider2D[] hits = Physics2D.OverlapBoxAll(playerCaptureBox.boxCol.bounds.center, playerCaptureBox.boxCol.bounds.size, 0, enemyLayers);
@@ -82,13 +83,15 @@ public class PlayerPanAttack : MonoBehaviour
         {
             foreach (Collider2D enemy in hits)
             {
-                if (inventory.numberOfRolls < 3)
+                if(enemy.gameObject.CompareTag("Enemy"))
                 {
-                    TakeDamage takeDmg = enemy.GetComponent<TakeDamage>();
-                    if (takeDmg != null)
+                    if (inventory.numberOfRolls < 3)
                     {
-
-                        takeDmg.isCaptured = true;
+                        TakeDamage takeDmg = enemy.GetComponent<TakeDamage>();
+                        if (takeDmg != null)
+                        {
+                            takeDmg.isCaptured = true;
+                        }
                     }
                 }
             }
@@ -110,6 +113,7 @@ public class PlayerPanAttack : MonoBehaviour
                 AudioManager.instance.Play("pan_hit_03");
                 PlayerController.instance.ResetWeight();
                 inventory.ResetInventory();
+                CookingSystem.instance.ResetOutputs();
             }
         }
 
