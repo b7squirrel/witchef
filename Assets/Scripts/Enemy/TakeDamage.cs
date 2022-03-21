@@ -42,7 +42,7 @@ public class TakeDamage : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("AttackBoxPlayer") || collision.CompareTag("Rolling"))
+        if (collision.CompareTag("AttackBoxPlayer"))
         {
             if(!isStunned)
             {

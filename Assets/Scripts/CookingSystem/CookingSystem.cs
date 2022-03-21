@@ -46,7 +46,6 @@ public class CookingSystem : MonoBehaviour
             {
                 _numberOfRollOnPan++;
             }
-            Debug.Log("Roll Game Object on the pan = " + _numberOfRollOnPan);
         }
     }
 

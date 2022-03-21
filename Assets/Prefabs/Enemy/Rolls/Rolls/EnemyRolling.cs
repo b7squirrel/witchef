@@ -24,14 +24,13 @@ public class EnemyRolling : MonoBehaviour
     public Transform hitEffectPoint;
 
     public int numberOfRolls;
-    explosion _explosion;
+    public GameObject explosion;
 
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
         currentState = rollingState.rolling;
         isRolling = true;
-        _explosion = GetComponent<explosion>();
     }
 
     void Update()
@@ -90,11 +89,8 @@ public class EnemyRolling : MonoBehaviour
         {
             if(!isRolling)
             {
-                //Debug.Log("Roll Type = " + rollSO.rollType);
-                //Debug.Log("Number of Rolls = " + rollSO.numberOfRolls);
-                //Debug.Log("Flavor Type = " + flavorSo.flavorType);
-                //Debug.Log("Number of Flaver = " + flavorSo.numberOfFlavors);
-                _explosion.DestroyArea(numberOfRolls);
+                GameObject _explosion = Instantiate(explosion, transform.position, Quaternion.identity);
+                _explosion.GetComponent<Explosion>().numberOfRolls = this.numberOfRolls;
                 Destroy(gameObject);
             }
         }
@@ -113,4 +109,6 @@ public class EnemyRolling : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    
 }

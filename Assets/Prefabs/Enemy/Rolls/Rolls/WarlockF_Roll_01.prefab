@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 6133318176711500710}
   - component: {fileID: 8139999995879440491}
   - component: {fileID: 6365783884329737928}
-  - component: {fileID: 7565733352111885943}
   - component: {fileID: -8355381248996168582}
   - component: {fileID: 886586219965358812}
-  - component: {fileID: 355304389329029430}
+  - component: {fileID: 7565733352111885943}
   m_Layer: 6
   m_Name: WarlockF_Roll_01
   m_TagString: Rolling
@@ -107,26 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7565733352111885943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289749946308134405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cf8164bc1e5ce41bfa36b5276c9f51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followingPanSpeed: 30
-  isRolling: 0
-  beingHit: 0
-  initForce_x: 25
-  initForce_y: 10
-  hitEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
-  hitEffectPoint: {fileID: 3410760840224446877}
-  numberOfRolls: 1
 --- !u!50 &-8355381248996168582
 Rigidbody2D:
   serializedVersion: 4
@@ -174,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.125, y: 1}
   m_EdgeRadius: 0
---- !u!114 &355304389329029430
+--- !u!114 &7565733352111885943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,20 +162,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289749946308134405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35122c2489c376b489479e9dc504c9cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 59cf8164bc1e5ce41bfa36b5276c9f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCol: {fileID: 0}
-  whatToDestroy:
-    serializedVersion: 2
-    m_Bits: 384
-  explosionEffect: {fileID: 6875489578192507737, guid: 109ef7374084ea54a94950ee48187e13, type: 3}
-  debris: {fileID: 187122873919782896, guid: 64c18b34fb810cc42b34bbadf415137b, type: 3}
-  debrisDirt: {fileID: 2150629472456039725, guid: f8c2c940b4f2eaa4da644192fcd88134, type: 3}
-  debrisParticleEffect: {fileID: 5738631094860149647, guid: c3bb8c08a19e20e4d9b08d1b0bd94054, type: 3}
-  explosionForce: 20
-  debrisOffsetPosition: 0.5
-  debugDot: {fileID: 245781571268478776, guid: 8ba0080dd4f69154e895caf9efdb1498, type: 3}
+  followingPanSpeed: 30
+  isRolling: 0
+  beingHit: 0
+  initForce_x: 25
+  initForce_y: 10
+  hitEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
+  hitEffectPoint: {fileID: 3410760840224446877}
+  numberOfRolls: 1
+  explosion: {fileID: 6970464861885622262, guid: 6ae18ccdb20696f4b8c2ff179d866d14, type: 3}
 --- !u!1 &8043463737213346029
 GameObject:
   m_ObjectHideFlags: 0
