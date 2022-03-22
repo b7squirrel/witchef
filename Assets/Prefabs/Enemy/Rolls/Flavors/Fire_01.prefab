@@ -126,3 +126,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   numberOfFlavor: 1
+  explosionFlavor: {fileID: 8114638731018444618, guid: d7b9ed80bd8f40e4d91cfb16c0597564, type: 3}

@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Enemy\Warlock\Warlock.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\Explosion.cs" />
+    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\ExplosionFlavor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

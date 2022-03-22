@@ -83,14 +83,15 @@ public class EnemyRolling : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
     }
+    // ground나 enemy에 충돌하면 explosion을 생성하고 사이즈값을 넘겨준 뒤 자신을 destroy시킨다
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
         {
             if(!isRolling)
             {
-                GameObject _explosion = Instantiate(explosion, transform.position, Quaternion.identity);
-                _explosion.GetComponent<Explosion>().numberOfRolls = this.numberOfRolls;
+                //GameObject _explosion = Instantiate(explosion, transform.position, Quaternion.identity);
+                //_explosion.GetComponent<Explosion>().numberOfRolls = this.numberOfRolls;
                 Destroy(gameObject);
             }
         }

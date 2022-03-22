@@ -9,6 +9,7 @@ public class EnemyFlavor : MonoBehaviour
 {
     public LayerMask rollLayer;
     public int numberOfFlavor;
+    public GameObject explosionFlavor;
 
     private void Awake()
     {
@@ -18,5 +19,12 @@ public class EnemyFlavor : MonoBehaviour
             transform.parent = hit.transform;
         }
     }
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy") || collision.CompareTag("Ground"))
+        {
+            GameObject _clone = Instantiate(explosionFlavor, transform.position, Quaternion.identity);
+            _clone.GetComponent<ExplosionFlavor>().numberOfFlavors = numberOfFlavor;
+        }
+    }
 }
