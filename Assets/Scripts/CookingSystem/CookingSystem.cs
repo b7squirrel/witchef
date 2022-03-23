@@ -28,6 +28,7 @@ public class CookingSystem : MonoBehaviour
     [Header("Frying Pan")]
     public GameObject roll_Slot;
     public GameObject flavor_Slot;
+    Animator _rollSlot_animator;
     SpriteRenderer _rollSprite;
     SpriteRenderer _flavorSprite;
     Color _color;
@@ -43,6 +44,8 @@ public class CookingSystem : MonoBehaviour
         myRecipeFlavor = GetComponent<RecipeFlavor>();
         panPoint = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().panPoint;
         rollLayer = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().rollLayers;
+
+        _rollSlot_animator = roll_Slot.GetComponent<Animator>();
         
         _rollSprite = roll_Slot.GetComponent<SpriteRenderer>();
         _color = _rollSprite.color;
@@ -88,6 +91,9 @@ public class CookingSystem : MonoBehaviour
                 _rollSprite.sprite = outputRoll.rollSprite[inventory.numberOfRolls - 1];
                 _color.a = 1;
                 _rollSprite.color = _color;
+
+                _rollSlot_animator.runtimeAnimatorController = outputRoll.roll_OverrideController[inventory.numberOfRolls - 1];
+
                 return;
             }
         }

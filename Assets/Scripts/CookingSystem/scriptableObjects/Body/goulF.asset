@@ -22,3 +22,7 @@ MonoBehaviour:
   - {fileID: 7776301901480157975, guid: ba8a2f3ba3b796348803a6cf0bebfe64, type: 3}
   - {fileID: -3600456032655560047, guid: ba8a2f3ba3b796348803a6cf0bebfe64, type: 3}
   - {fileID: -5697028100136570010, guid: ba8a2f3ba3b796348803a6cf0bebfe64, type: 3}
+  roll_OverrideController:
+  - {fileID: 22100000, guid: ed6fb2243f45c8f46878aee6a9b637c3, type: 2}
+  - {fileID: 22100000, guid: 3775b96df3ac12446bdc1fa5ddba5446, type: 2}
+  - {fileID: 22100000, guid: 3b50b9069b90c024fa0aad63748c3d5e, type: 2}
