@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 실질적인 Roll, Flavor 생성
+/// </summary>
 public class CookingSystem : MonoBehaviour
 {
     public static CookingSystem instance;
@@ -22,11 +25,17 @@ public class CookingSystem : MonoBehaviour
     public LayerMask rollLayer;
     public LayerMask flavorLayer;
 
+    [Header("Frying Pan")]
+    public GameObject roll_Slot;
+    public GameObject flavor_Slot;
+    SpriteRenderer _rollSprite;
+    SpriteRenderer _flavorSprite;
+    Color _color;
+
     private void Awake()
     {
         instance = this;
     }
-
     private void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -34,8 +43,17 @@ public class CookingSystem : MonoBehaviour
         myRecipeFlavor = GetComponent<RecipeFlavor>();
         panPoint = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().panPoint;
         rollLayer = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().rollLayers;
-    }
+        
+        _rollSprite = roll_Slot.GetComponent<SpriteRenderer>();
+        _color = _rollSprite.color;
+        _color.a = 0;
+        _rollSprite.color = _color;
 
+        _flavorSprite = flavor_Slot.GetComponent<SpriteRenderer>();
+        _color = _flavorSprite.color;
+        _color.a = 0;
+        _rollSprite.color = _color;
+    }
     private void Update()
     {
         Collider2D[] checkRoll = Physics2D.OverlapCircleAll(panPoint.position, .3f, rollLayer);
@@ -48,17 +66,6 @@ public class CookingSystem : MonoBehaviour
             }
         }
     }
-
-    public void Roll()
-    {
-        CreateRollOutput();
-    }
-
-    public void Flavor()
-    {
-        CreateFlavorOutput();
-    }
-
     // rollType body의 갯수를 탐색
     // 3개의 body가 모두 같은 rollName인지 탐색
     // rollType soul의 갯수를 탐색
@@ -75,21 +82,16 @@ public class CookingSystem : MonoBehaviour
             {
                 outputRoll = myRecipeRoll.recipeRoll[i];
                 outputRoll.rollType = myRecipeRoll.recipeRoll[i].rollType;
-                Collider2D[] _checkRoll = Physics2D.OverlapCircleAll(panPoint.position, .3f, rollLayer);
-                if(_checkRoll != null)
-                {
-                    foreach (var item in _checkRoll)
-                    {
-                        Destroy(item.gameObject);
-                    }
-                }
 
-                GameObject _roll = Instantiate(outputRoll.rollPrefab[inventory.numberOfRolls - 1], panPoint.position, Quaternion.identity);
+                // 후라이팬의 Roll Slot의 Sprite를 output sprite로 교체
+                // roll아웃풋이 none이 아니라면 outputSO에서 sprite를 꺼내오고 ROll Slot의 알파값은 1로
+                _rollSprite.sprite = outputRoll.rollSprite[inventory.numberOfRolls - 1];
+                _color.a = 1;
+                _rollSprite.color = _color;
                 return;
             }
         }
     }
-
     public void CreateFlavorOutput()
     {
         // pan에 올라와 있는 flavor가 어떤 flavor type으로 일치하는지
@@ -104,21 +106,14 @@ public class CookingSystem : MonoBehaviour
                 outputFlavor = myRecipeFlavor.recipeFlavor[i];
                 outputFlavor.flavorType = myRecipeFlavor.recipeFlavor[i].flavorType;
 
-                Collider2D[] _checkFlavor = Physics2D.OverlapCircleAll(panPoint.position, .3f, flavorLayer);
-                if (_checkFlavor != null)
-                {
-                    foreach (var item in _checkFlavor)
-                    {
-                        Destroy(item.gameObject);
-                    }
-                }
-
-                GameObject _flavor = Instantiate(outputFlavor.flavorPrefab[inventory.numberOfFlavors - 1], panPoint.position, Quaternion.identity);
+                // 후라이팬의 Flavor Slot의 Sprite를 output sprite로 교체
+                _flavorSprite.sprite = outputFlavor.flavorSprite[inventory.numberOfFlavors - 1];
+                _color.a = 1;
+                _rollSprite.color = _color;
                 return;
             }
         }
     }
-
     public void ResetOutputs()
     {
         inventory.numberOfFlavors = 0;

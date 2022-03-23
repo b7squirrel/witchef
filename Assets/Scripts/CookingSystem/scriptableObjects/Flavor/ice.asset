@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: ice
   m_EditorClassIdentifier: 
   flavorType: 2
-  flavorSprite: {fileID: 21300000, guid: 7dc5ed00edd564845b47d68cb470d986, type: 3}
+  flavorSprite_UI: {fileID: 21300000, guid: 7dc5ed00edd564845b47d68cb470d986, type: 3}
   flavorPrefab: []
+  flavorSprite:
+  - {fileID: 21300000, guid: 7dc5ed00edd564845b47d68cb470d986, type: 3}
+  - {fileID: 21300000, guid: 7dc5ed00edd564845b47d68cb470d986, type: 3}
+  - {fileID: 21300000, guid: 7dc5ed00edd564845b47d68cb470d986, type: 3}

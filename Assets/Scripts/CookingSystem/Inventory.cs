@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UI관리
+/// Roll, Flavor 갯수 관리
+/// </summary>
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
@@ -69,11 +73,11 @@ public class Inventory : MonoBehaviour
 
     public void AcquireFlavor(FlavorSo _flavorSo)
     {
-        if (InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // 받쳐주는 roll이 없으면 제거
-        {
-            InputSlots[0].AddFlavor(defaultFlavorSo);
-            return;
-        }
+        //if (InputSlots[0].GetRoll().rollSo.rollType == Roll.rollType.none)  // 받쳐주는 roll이 없으면 제거
+        //{
+        //    InputSlots[0].AddFlavor(defaultFlavorSo);
+        //    return;
+        //}
         if (InputSlots[0].GetFlavor().flavorSo.flavorType == Flavor.flavorType.none)
         {
             InputSlots[0].AddFlavor(_flavorSo);

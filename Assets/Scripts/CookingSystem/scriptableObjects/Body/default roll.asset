@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: default roll
   m_EditorClassIdentifier: 
   rollType: 0
-  rollSprite: {fileID: 21300000, guid: e2a738a8af7afda40972956f40ab7f1e, type: 3}
+  rollSprite_UI: {fileID: 21300000, guid: e2a738a8af7afda40972956f40ab7f1e, type: 3}
   rollPrefab: []
+  rollSprite:
+  - {fileID: 21300000, guid: e2a738a8af7afda40972956f40ab7f1e, type: 3}

@@ -64,13 +64,6 @@ public class PlayerPanAttack : MonoBehaviour
         {
             anim.Play("Player_Parrying");
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("Tryging to Reset Inventory.");
-            inventory.InputSlots[0].InitSlot();
-            //inventory.AcquireFlavor(flavorSo);
-            //inventory.AcquireRoll(rollso);
-        }
     }
 
     // enemy는 overlapBox로 캡쳐하고 projectile은 playercaptureBox에서 ontriggerenter2d로 감지해서 캡쳐함
@@ -97,7 +90,17 @@ public class PlayerPanAttack : MonoBehaviour
             }
         }
     }
-
+    void Panning()
+    {
+        // Capture의 마지막 프레임에서 애니메이션 이벤트로 실행
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Panning"))
+        {
+            if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
+            {
+                anim.Play("Player_Panning");
+            }
+        }
+    }
     void HitRoll()
     {
         Collider2D[] hitRolls = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, rollLayers);
@@ -118,15 +121,5 @@ public class PlayerPanAttack : MonoBehaviour
         }
 
     }
-    void Panning()
-    {
-        // Capture의 마지막 프레임에서 애니메이션 이벤트로 실행
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Panning"))
-        {
-            if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
-            {
-                anim.Play("Player_Panning");
-            }
-        }
-    }
+    
 }

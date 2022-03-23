@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: warlockF
   m_EditorClassIdentifier: 
   rollType: 2
-  rollSprite: {fileID: 21300000, guid: 38e3af302ea9547409422af19b43d404, type: 3}
+  rollSprite_UI: {fileID: 21300000, guid: 38e3af302ea9547409422af19b43d404, type: 3}
   rollPrefab:
   - {fileID: 1289749946308134405, guid: 666728c79bed8884499e320ca636aa5e, type: 3}
   - {fileID: 950667624872959577, guid: 8f08d0af92617a64ea02814cc30a6175, type: 3}
   - {fileID: 5994110589348398674, guid: 9dd58a1693fe7144d8a048bf25bfa07b, type: 3}
+  rollSprite:
+  - {fileID: 21300000, guid: 80f8352f1ca6abb48bea64e603dc9ade, type: 3}
+  - {fileID: 21300000, guid: 80f8352f1ca6abb48bea64e603dc9ade, type: 3}
+  - {fileID: 21300000, guid: 80f8352f1ca6abb48bea64e603dc9ade, type: 3}

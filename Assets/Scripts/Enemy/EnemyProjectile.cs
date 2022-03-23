@@ -57,12 +57,15 @@ public class EnemyProjectile : MonoBehaviour
             }
             else
             {
-                if(Inventory.instance.numberOfFlavors < 3) // 일단 flavor도 캡쳐는 했다가 받쳐주는 roll이 없으면 inventory에서 제거
+                if(Inventory.instance.numberOfFlavors >= Inventory.instance.numberOfRolls) // 포화상태이면 소멸, 아니라면 GetFlavored
+                {
+                    Saturated();
+                }
+                else
                 {
                     GetFlavored();
                 }
             }
-            
         }
         else
         {
@@ -156,11 +159,8 @@ public class EnemyProjectile : MonoBehaviour
     {
         AudioManager.instance.Play("GetRolled_01");
         // Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
-        PlayerController.instance.weight++;
-        PlayerController.instance.WeightCalculation();
         Inventory.instance.AcquireFlavor(flavorSo);
-        CookingSystem.instance.Flavor();
-
+        CookingSystem.instance.CreateFlavorOutput();
         isGettingIn = true;
         gameObject.tag = "Player";
     }
@@ -185,5 +185,12 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(_smoke);
         Destroy(_debris);
         Destroy(gameObject);
+    }
+
+    private void Saturated()
+    {
+        // 포화상태여서 사그라드는 애니메이션이 필요
+        Debug.Log("Saturated!");
+        DestroyProjectile();
     }
 }

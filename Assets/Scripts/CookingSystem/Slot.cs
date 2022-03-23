@@ -26,28 +26,25 @@ public class Slot : MonoBehaviour
     {
         roll.rollSo = _rollSo;
         roll.rollSo.rollType = _rollSo.rollType;
-        roll.rollSprite = _rollSo.rollSprite;
+        roll.rollSprite = _rollSo.rollSprite_UI;
         imageRoll.sprite = roll.rollSprite;
     }
-
-    public Roll GetRoll()
-    {
-        return roll;
-    }
-
     public void AddFlavor(FlavorSo _flavorSo)
     {
         this.flavor.flavorSo = _flavorSo;
         flavor.flavorSo.flavorType = _flavorSo.flavorType;
-        flavor.flavorSprite = _flavorSo.flavorSprite;
+        flavor.flavorSprite = _flavorSo.flavorSprite_UI;
         imageFlavor.sprite = flavor.flavorSprite;
+    }
+    public Roll GetRoll()
+    {
+        return roll;
     }
 
     public Flavor GetFlavor()
     {
         return flavor;
     }
-
     public void InitSlot()
     {
         AddRoll(defaultRollSo);

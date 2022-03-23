@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlavorSo : ScriptableObject
 {
     public Flavor.flavorType flavorType;
-    public Sprite flavorSprite;
+    public Sprite flavorSprite_UI;
     public GameObject[] flavorPrefab;
+    public Sprite[] flavorSprite;
 }

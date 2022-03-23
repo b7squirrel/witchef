@@ -65,8 +65,7 @@ public class TakeDamage : MonoBehaviour
         AudioManager.instance.Stop("Energy_01");
         AudioManager.instance.Play("GetRolled_01");
         Inventory.instance.AcquireRoll(rollSo);
-        CookingSystem.instance.Roll();
-
+        CookingSystem.instance.CreateRollOutput();
         isStunned = false;
         isCaptured = false;
         PlayerController.instance.weight++;
