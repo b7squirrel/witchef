@@ -46,7 +46,7 @@ public class CookingSystem : MonoBehaviour
         rollLayer = FindObjectOfType<PlayerPanAttack>().GetComponent<PlayerPanAttack>().rollLayers;
 
         _rollSlot_animator = roll_Slot.GetComponent<Animator>();
-        
+
         _rollSprite = roll_Slot.GetComponent<SpriteRenderer>();
         _color = _rollSprite.color;
         _color.a = 0;
@@ -69,9 +69,6 @@ public class CookingSystem : MonoBehaviour
             }
         }
     }
-    // rollType body의 갯수를 탐색
-    // 3개의 body가 모두 같은 rollName인지 탐색
-    // rollType soul의 갯수를 탐색
     public void CreateRollOutput()
     {
         // pan에 올라와 있는 body가 어떤 body type으로 일치하는지
@@ -92,7 +89,11 @@ public class CookingSystem : MonoBehaviour
                 _color.a = 1;
                 _rollSprite.color = _color;
 
+                // 매번 0,0 으로 초기화 시켜서 무한히 더해지지 않게 함
                 _rollSlot_animator.runtimeAnimatorController = outputRoll.roll_OverrideController[inventory.numberOfRolls - 1];
+                float _offsetY = .35f * (inventory.numberOfRolls - 1);
+                roll_Slot.transform.localPosition = new Vector2(0, 0);
+                roll_Slot.transform.localPosition = new Vector2(0,  _offsetY);
 
                 return;
             }

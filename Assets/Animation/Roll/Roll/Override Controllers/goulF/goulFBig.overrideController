@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: goulFBig
   m_Controller: {fileID: 9100000, guid: 36b8680c92241874985bed3b2cdd69a4, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 933bbd3aa5de3f44c8df6a29e5e94140, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 97d1b9682aecb4b4a8a36586c5ef2e87, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 854bcdd9024a4d2418eaf41e8bb25e29, type: 2}
