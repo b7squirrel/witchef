@@ -30,6 +30,8 @@ public class EnemyProjectile : MonoBehaviour
 
     private bool hit;
     public GameObject cube;
+    // projectile이 목표물과 거리가 멀거나 가까워도 항상 목표물에 도달하도록 값을 조절해 주는 상수
+    public float distantConstant;
 
     void Start()
     {
@@ -74,23 +76,31 @@ public class EnemyProjectile : MonoBehaviour
                 if (!isParried)
                 {
                     theRB.velocity = new Vector2(moveDirection.x, moveDirection.y);
+                    
                 }
                 else
                 {
                     if (!hit)
                     {
-                        Color color = new Color(0, 1, 0, 1f);
-                        Gizmos.color = color;
-                        Instantiate(cube, transform.position, transform.rotation);
                         hit = true;
                     }
                     isFlying = true;
                     theRB.gravityScale = 1f;
+                    //Deflection();
                     Temp();
-                    
+
                     GameManager.instance.StartCameraShake(6, 1.3f);
                     GameManager.instance.TimeStop(.08f);
                 }
+            }
+            else
+            {
+                // 패링이 된 상태에서 날아가는 중
+
+                float _distance = Mathf.Abs(initialPoint.x - transform.position.x);
+
+
+                theRB.gravityScale += .08f / (_distance * distantConstant);
             }
         }
     }
@@ -152,13 +162,12 @@ public class EnemyProjectile : MonoBehaviour
             direc = 1;
         }
 
-        theRB.velocity = new Vector2(direc * moveSpeed / 12, 12f);
+        theRB.velocity = new Vector2(direc * moveSpeed, 20f);
     }
 
     void GetFlavored()
     {
         AudioManager.instance.Play("GetRolled_01");
-        // Instantiate(rolls.rollPrefab, PlayerPanAttack.instance.panPoint.position, transform.rotation);
         Inventory.instance.AcquireFlavor(flavorSo);
         CookingSystem.instance.CreateFlavorOutput();
         isGettingIn = true;
@@ -190,7 +199,6 @@ public class EnemyProjectile : MonoBehaviour
     private void Saturated()
     {
         // 포화상태여서 사그라드는 애니메이션이 필요
-        Debug.Log("Saturated!");
         DestroyProjectile();
     }
 }

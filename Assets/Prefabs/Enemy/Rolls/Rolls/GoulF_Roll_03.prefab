@@ -172,7 +172,8 @@ MonoBehaviour:
   hitEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
   hitEffectPoint: {fileID: 8788784902666052578}
   numberOfRolls: 3
-  explosion: {fileID: 6970464861885622262, guid: 6ae18ccdb20696f4b8c2ff179d866d14, type: 3}
+  numberOfFlavor: 0
+  theFlavorSo: {fileID: 0}
 --- !u!1 &7259091120835281767
 GameObject:
   m_ObjectHideFlags: 0
