@@ -121,6 +121,7 @@ public class CookingSystem : MonoBehaviour
                 GameObject _flavorParticle = Instantiate(outputFlavor.flavorParticle, roll_Slot.transform.position, Quaternion.identity);
                 _flavorParticle.transform.parent = roll_Slot.transform;
                 _flavorParticle.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
+                _flavorParticle.transform.localEulerAngles = new Vector3(-90, 0, 0);
                 //_flavorSprite.sprite = outputFlavor.flavorSprite[inventory.numberOfFlavors - 1];
                 //_color.a = 1;
                 //_rollSprite.color = _color;

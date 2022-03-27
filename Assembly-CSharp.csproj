@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scripts\CookingSystem\RollSO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\RollsProperty.cs" />
-    <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\EnemyFlavor.cs" />
     <Compile Include="Assets\Scripts\Enemy\TakeDamage.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\PlayerHurtBox.cs" />

@@ -118,6 +118,7 @@ public class PlayerPanAttack : MonoBehaviour
             GameObject _flavorPrefab = Instantiate(CookingSystem.instance.outputFlavor.flavorParticle, _hitPoint, panPoint.rotation);
             _flavorPrefab.transform.parent = _rollPrefab.transform;
             _flavorPrefab.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
+            _flavorPrefab.transform.localEulerAngles = new Vector3(-90, 0, 0);
         }
 
         _rollPrefab.GetComponent<EnemyRolling>().BeingHit();

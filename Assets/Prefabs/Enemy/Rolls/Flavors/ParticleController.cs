@@ -49,7 +49,7 @@ public class ParticleController : MonoBehaviour
             psShape.radius = .8f;
             psShape.angle = 35;
         }
-        if (numberOfFlavors == 2)
+        if (numberOfFlavors == 3)
         {
             psMain.startLifetimeMultiplier = 1;
             psMain.startSizeMultiplier = .6f;
