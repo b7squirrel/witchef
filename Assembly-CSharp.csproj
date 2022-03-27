@@ -62,9 +62,11 @@
     <Compile Include="Assets\Scripts\Enemy\Goul\GoulAttackBox.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\EnemyRolling.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\Explosion.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\Roll.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\RollSO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyProjectile.cs" />
+    <Compile Include="Assets\Scripts\CookingSystem\RollsProperty.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\EnemyFlavor.cs" />
     <Compile Include="Assets\Scripts\Enemy\TakeDamage.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
@@ -83,11 +85,11 @@
     <Compile Include="Assets\Scripts\CookingSystem\Flavor.cs" />
     <Compile Include="Assets\Scripts\PlayerAttackBox.cs" />
     <Compile Include="Assets\Tiles.cs" />
+    <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\ExplosionFlavor.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Warlock\Warlock.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\Explosion.cs" />
-    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\ExplosionFlavor.cs" />
+    <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\ParticleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

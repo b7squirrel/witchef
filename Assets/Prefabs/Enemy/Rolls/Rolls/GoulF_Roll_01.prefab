@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5376950511103420877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.18301266, y: 0.6830127, z: 0.18301266, w: 0.6830127}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5870785133431812955}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 90, z: 0}
 --- !u!1 &7610329646806732424
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ Animator:
   m_GameObject: {fileID: 7610329646806732424}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 85877eab41e2f9f46975ad724357ced7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 44ed9383a80714c43857b87dd232de8b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -196,9 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followingPanSpeed: 30
-  isRolling: 0
   beingHit: 0
-  initForce_x: 25
+  initForce_x: 30
   initForce_y: 10
   hitEffect: {fileID: 2720419082649462560, guid: e6a0bf88b6867174bb7e0843401eeb70, type: 3}
   hitEffectPoint: {fileID: 463625268805735587}

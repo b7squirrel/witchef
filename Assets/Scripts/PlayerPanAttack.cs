@@ -103,23 +103,33 @@ public class PlayerPanAttack : MonoBehaviour
     }
     void HitRoll()
     {
-        Collider2D[] hitRolls = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, rollLayers);
+        Roll.rollType _roll = inventory.InputSlots[0].GetRoll().rollSo.rollType;
+        int _rollNumber = inventory.numberOfRolls;
+        int _flavorNumber = inventory.numberOfFlavors;
 
-        foreach (Collider2D roll in hitRolls)
+        Vector3 _hitPoint = panPoint.position + new Vector3(PlayerController.instance.staticDirection * 2.2f, 0);
+
+        // Roll, Flavor 생성
+        GameObject _rollPrefab = Instantiate(CookingSystem.instance.outputRoll.rollPrefab[inventory.numberOfRolls - 1], _hitPoint, panPoint.rotation);
+        _rollPrefab.GetComponent<EnemyRolling>().numberOfFlavor = inventory.numberOfFlavors;
+        _rollPrefab.GetComponent<EnemyRolling>().theFlavorSo = CookingSystem.instance.outputFlavor; // flavor액션을 가져오기 위해
+        if (CookingSystem.instance.outputFlavor.flavorType != Flavor.flavorType.none)
         {
-            EnemyRolling enemyRolling = roll.GetComponent<EnemyRolling>();
-            if (enemyRolling != null)
-            {
-                enemyRolling.transform.position = hittingRollPoint.position;
-                enemyRolling.BeingHit();
-                AudioManager.instance.Play("fire_explosion_01");
-                AudioManager.instance.Play("pan_hit_03");
-                PlayerController.instance.ResetWeight();
-                inventory.ResetInventory();
-                CookingSystem.instance.ResetOutputs();
-            }
+            GameObject _flavorPrefab = Instantiate(CookingSystem.instance.outputFlavor.flavorParticle, _hitPoint, panPoint.rotation);
+            _flavorPrefab.transform.parent = _rollPrefab.transform;
+            _flavorPrefab.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
         }
 
+        _rollPrefab.GetComponent<EnemyRolling>().BeingHit();
+
+
+
+        AudioManager.instance.Play("fire_explosion_01");
+        AudioManager.instance.Play("pan_hit_03");
+        PlayerController.instance.ResetWeight();
+
+        inventory.ResetInventory();
+        CookingSystem.instance.ResetOutputs();
     }
     
 }

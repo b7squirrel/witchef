@@ -56,6 +56,9 @@ public class CookingSystem : MonoBehaviour
         _color = _flavorSprite.color;
         _color.a = 0;
         _rollSprite.color = _color;
+
+        outputFlavor = defaultFlavorSo;
+        outputFlavor.flavorType = Flavor.flavorType.none;
     }
     private void Update()
     {
@@ -113,17 +116,43 @@ public class CookingSystem : MonoBehaviour
                 outputFlavor = myRecipeFlavor.recipeFlavor[i];
                 outputFlavor.flavorType = myRecipeFlavor.recipeFlavor[i].flavorType;
 
-                // 후라이팬의 Flavor Slot의 Sprite를 output sprite로 교체
-                _flavorSprite.sprite = outputFlavor.flavorSprite[inventory.numberOfFlavors - 1];
-                _color.a = 1;
-                _rollSprite.color = _color;
+                // Flavor Particle 생성 (그 전에 이전에 생성되었던 파티클이 있으면 제거)
+                ResetFlavorParticle();
+                GameObject _flavorParticle = Instantiate(outputFlavor.flavorParticle, roll_Slot.transform.position, Quaternion.identity);
+                _flavorParticle.transform.parent = roll_Slot.transform;
+                _flavorParticle.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
+                //_flavorSprite.sprite = outputFlavor.flavorSprite[inventory.numberOfFlavors - 1];
+                //_color.a = 1;
+                //_rollSprite.color = _color;
                 return;
             }
         }
     }
     public void ResetOutputs()
     {
-        inventory.numberOfFlavors = 0;
-        inventory.numberOfRolls = 0;
+        _color.a = 0;
+        _rollSprite.color = _color;
+
+        // Flavor의 파티클 리셋
+        ResetFlavorParticle();
+    }
+
+    private void ResetFlavorParticle()
+    {
+        Debug.Log("In Reset Flavor Particle Method!!");
+        ParticleController[] _particles = roll_Slot.GetComponentsInChildren<ParticleController>();
+        if(_particles != null)
+        {
+            foreach (var item in _particles)
+            {
+                item.GetComponent<ParticleController>().DestroyParticle();
+            }
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Color _color = new Color(1, 0, 0, .5f);
+        Gizmos.color = _color;
+        Gizmos.DrawSphere(roll_Slot.transform.position, 2f);
     }
 }

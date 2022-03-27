@@ -22,3 +22,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 127b07a4c94d1d54dbacec126e080da2, type: 3}
   - {fileID: 21300000, guid: 127b07a4c94d1d54dbacec126e080da2, type: 3}
   - {fileID: 21300000, guid: 127b07a4c94d1d54dbacec126e080da2, type: 3}
+  flavorParticle: {fileID: 8142703513907301136, guid: df73389b5fb0c79448147faba92ab132, type: 3}
+  actionPrefab: {fileID: 8114638731018444618, guid: d7b9ed80bd8f40e4d91cfb16c0597564, type: 3}

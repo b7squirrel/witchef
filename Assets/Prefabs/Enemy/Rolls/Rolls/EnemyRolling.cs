@@ -8,13 +8,12 @@ using UnityEngine;
 /// </summary>
 public class EnemyRolling : MonoBehaviour
 {
-    private enum rollingState { rolling, shooting, flying, dropped };
+    private enum rollingState { shooting, flying, dropped };
     private rollingState currentState;
 
     public float followingPanSpeed;
     private Rigidbody2D theRB;
 
-    public bool isRolling; // 팬 위에서 돌고 있는 경우
     public bool beingHit;  // player pan attack에서 참조
     
     private float direction;
@@ -23,14 +22,18 @@ public class EnemyRolling : MonoBehaviour
     public GameObject hitEffect;
     public Transform hitEffectPoint;
 
+    [Header("Passed by Player")]
     public int numberOfRolls;
-    public GameObject explosion;
+    public int numberOfFlavor;
+
+    //public GameObject explosionFlavor;
+    public FlavorSo theFlavorSo;
 
     void Start()
     {
         theRB = GetComponent<Rigidbody2D>();
-        currentState = rollingState.rolling;
-        isRolling = true;
+        currentState = rollingState.shooting;
+        
     }
 
     void Update()
@@ -44,12 +47,6 @@ public class EnemyRolling : MonoBehaviour
 
         switch (currentState)
         {
-            case rollingState.rolling:
-
-                theRB.gravityScale = 0;
-                transform.position = Vector2.Lerp(transform.position, PlayerPanAttack.instance.panPoint.position, followingPanSpeed * Time.deltaTime);
-                break;
-
             case rollingState.shooting:
 
                 if (theRB.gravityScale != 1)
@@ -61,6 +58,9 @@ public class EnemyRolling : MonoBehaviour
                 break;
 
             case rollingState.flying:
+
+                theRB.gravityScale += .02f;
+
                 break;
 
             case rollingState.dropped:
@@ -84,23 +84,26 @@ public class EnemyRolling : MonoBehaviour
         }
     }
     // ground나 enemy에 충돌하면 explosion을 생성하고 사이즈값을 넘겨준 뒤 자신을 destroy시킨다
+    // 만약 flavor가 있다면 폭발을 생성한다
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
         {
-            if(!isRolling)
+            if(numberOfFlavor > 0)
             {
-                //GameObject _explosion = Instantiate(explosion, transform.position, Quaternion.identity);
-                //_explosion.GetComponent<Explosion>().numberOfRolls = this.numberOfRolls;
-                Destroy(gameObject);
+                GameObject _action = Instantiate(theFlavorSo.actionPrefab, transform.position, Quaternion.identity); // 액션프리펩 생성
+                _action.GetComponent<ExplosionFlavor>().numberOfFlavors = numberOfFlavor;
+                //GameObject _clone = Instantiate(explosionFlavor, transform.position, Quaternion.identity);
+                //_clone.GetComponent<ExplosionFlavor>().numberOfFlavors = numberOfFlavor;
             }
+
+            Destroy(gameObject);
         }
     }
     public void BeingHit()
     {
         currentState = rollingState.shooting;
         beingHit = false;
-        isRolling = false;
         GameObject clone = Instantiate(hitEffect, hitEffectPoint.position, hitEffectPoint.rotation);
         //시간 멈추고 카메라쉐이크
         GameManager.instance.StartCameraShake(8, .8f);

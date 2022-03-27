@@ -34,6 +34,8 @@ public class Inventory : MonoBehaviour
         {
             _slot.InitSlot();
         }
+        numberOfFlavors = 0;
+        numberOfRolls = 0;
     }
 
     public void AcquireRoll(RollSO _rollSo)

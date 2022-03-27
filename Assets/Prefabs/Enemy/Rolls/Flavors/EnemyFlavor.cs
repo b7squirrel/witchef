@@ -11,14 +11,6 @@ public class EnemyFlavor : MonoBehaviour
     public int numberOfFlavor;
     public GameObject explosionFlavor;
 
-    private void Awake()
-    {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, .2f, rollLayer);
-        if(hit != null)
-        {
-            transform.parent = hit.transform;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Enemy") || collision.CompareTag("Ground"))
