@@ -150,6 +150,7 @@ public class EnemyProjectile : MonoBehaviour
 
     void Temp()
     {
+        this.gameObject.tag = "ProjectileDeflected";
         float tempDirection = transform.position.x - initialPoint.x;
         int direc = 0;
 

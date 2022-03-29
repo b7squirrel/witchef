@@ -58,11 +58,16 @@ public class TakeDamage : MonoBehaviour
                 }
             }
         }
-        if (collision.CompareTag("ProjectileEnemy"))
+        if (collision.CompareTag("ProjectileDeflected"))
         {
             AudioManager.instance.Play("Goul_Die_01");
             GameManager.instance.StartCameraShake(4, .5f);
             GameManager.instance.TimeStop(.02f);
+            Die();
+        }
+
+        if (collision.CompareTag("Rolling"))
+        {
             Die();
         }
     }

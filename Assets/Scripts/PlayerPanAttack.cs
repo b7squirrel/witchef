@@ -53,7 +53,7 @@ public class PlayerPanAttack : MonoBehaviour
             captureTimer = captureDuration;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyUp(KeyCode.Z))
         {
             if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
             {

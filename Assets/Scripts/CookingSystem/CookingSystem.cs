@@ -72,6 +72,7 @@ public class CookingSystem : MonoBehaviour
             }
         }
     }
+
     public void CreateRollOutput()
     {
         // pan에 올라와 있는 body가 어떤 body type으로 일치하는지
@@ -150,10 +151,10 @@ public class CookingSystem : MonoBehaviour
             }
         }
     }
-    private void OnDrawGizmos()
-    {
-        Color _color = new Color(1, 0, 0, .5f);
-        Gizmos.color = _color;
-        Gizmos.DrawSphere(roll_Slot.transform.position, 2f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Color _color = new Color(1, 0, 0, .5f);
+    //    Gizmos.color = _color;
+    //    Gizmos.DrawSphere(roll_Slot.transform.position, 2f);
+    //}
 }
