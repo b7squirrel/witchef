@@ -53,18 +53,21 @@ public class PlayerPanAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            //무한 캡쳐 가능
+            if (Input.GetKey(KeyCode.Z))
+            {
+                return;
+            }
             anim.Play("Player_Capture");
             captureTimer = captureDuration;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if(inventory.numberOfRolls > 0)
-            {
-                anim.Play("Player_HitSlicedRoll");
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    if(inventory.numberOfRolls > 0)
+        //    {
+        //        anim.Play("Player_HitSlicedRoll");
+        //    }
+        //}
 
         if (Input.GetKey(KeyCode.Z))
         {
@@ -80,7 +83,14 @@ public class PlayerPanAttack : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            if(chargeTimeCounter >= minChargeTime && chargeTimeCounter < maxChargeTime)
+            if(chargeTimeCounter < minChargeTime)
+            {
+                if (inventory.numberOfRolls > 0)
+                {
+                    anim.Play("Player_HitSlicedRoll");
+                }
+            }
+            else if(chargeTimeCounter >= minChargeTime && chargeTimeCounter < maxChargeTime)
             {
                 if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
                 {
@@ -202,4 +212,6 @@ public class PlayerPanAttack : MonoBehaviour
 
 
     }    
+
+    
 }
