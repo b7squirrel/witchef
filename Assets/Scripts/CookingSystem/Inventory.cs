@@ -115,4 +115,25 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 슬롯의 가장 오른쪽에 있는 Roll에 Flavor가 되어 있다면 그 슬롯을 default SO로 비운다
+    /// 슬롯의 가장 오른쪽에 있는 Roll에 Flavor가 되어 있지 않다면 그 슬롯의 Roll만 default SO로 비운다 
+    /// </summary>
+    public void TakeOutRoll()
+    {
+        int _slotNumber = numberOfRolls - 1;
+        if (InputSlots[numberOfRolls - 1].GetFlavor() != null)
+        {
+            InputSlots[numberOfRolls - 1].AddFlavor(defaultFlavorSo);
+            numberOfFlavors--;
+        }
+        InputSlots[numberOfRolls - 1].AddRoll(defaultRollSo);
+        numberOfRolls--;
+        
+        Debug.Log("Roll : Input Slot[" + _slotNumber + "] = " + InputSlots[_slotNumber].GetRoll().rollSo.rollType);
+        Debug.Log("Flavor : Input Slot[" + _slotNumber + "] = " + InputSlots[_slotNumber].GetFlavor().flavorSo.flavorType);
+        Debug.Log("Roll 갯수 = " + numberOfRolls);
+        Debug.Log("Flavor 갯수 = " + numberOfFlavors);
+    }
 }

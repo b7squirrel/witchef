@@ -77,7 +77,13 @@ public class CookingSystem : MonoBehaviour
     {
         // pan에 올라와 있는 body가 어떤 body type으로 일치하는지
         _rollNameOnPan = inventory.InputSlots[0].GetRoll().rollSo.rollType;
+        Debug.Log("팬 위에 올라와 있는 ROll TYPE은 " + _rollNameOnPan);
         
+        if(_rollNameOnPan == Roll.rollType.none)
+        {
+            ResetOutputs();
+        }
+
         // body 갯수, 타입
         // recipe에서 검색해서 output roll 찾아내기
         for (int i = 0; i < myRecipeRoll.recipeRoll.Length; i++)
@@ -141,7 +147,6 @@ public class CookingSystem : MonoBehaviour
 
     private void ResetFlavorParticle()
     {
-        Debug.Log("In Reset Flavor Particle Method!!");
         ParticleController[] _particles = roll_Slot.GetComponentsInChildren<ParticleController>();
         if(_particles != null)
         {

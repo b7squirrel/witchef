@@ -24,6 +24,11 @@ public class PlayerPanAttack : MonoBehaviour
     public RollSO rollso;
     public FlavorSo flavorSo;
 
+    [Header("Hit Charge Roll")]
+    private float chargeTimeCounter;
+    public float minChargeTime;
+    public float maxChargeTime;
+
     public float CaptureTimer
     {
         get { return captureTimer; }
@@ -53,13 +58,43 @@ public class PlayerPanAttack : MonoBehaviour
             captureTimer = captureDuration;
         }
 
-        if (Input.GetKeyUp(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
+            if(inventory.numberOfRolls > 0)
             {
-                anim.Play("Player_HitRoll");  // throwingAntic이 끝나면 throwing으로 넘어감.
+                anim.Play("Player_HitSlicedRoll");
             }
         }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            if(chargeTimeCounter < maxChargeTime)
+            {
+                chargeTimeCounter += Time.deltaTime;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            if(chargeTimeCounter >= minChargeTime && chargeTimeCounter < maxChargeTime)
+            {
+                if (inventory.InputSlots[0].GetRoll().rollSo.rollType != Roll.rollType.none)
+                {
+                    anim.Play("Player_HitRoll");  // throwingAntic이 끝나면 throwing으로 넘어감.
+                }
+            }
+            else if (chargeTimeCounter >= 5)
+            {
+                inventory.ResetInventory();
+                CookingSystem.instance.ResetOutputs();
+            }
+            chargeTimeCounter = 0;
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             anim.Play("Player_Parrying");
@@ -103,6 +138,7 @@ public class PlayerPanAttack : MonoBehaviour
     }
     void HitRoll()
     {
+        // Roll Type, Flavor Type, Roll 갯수, Flavor 갯수 얻어내는 함수를 Inventory에 구현하기
         Roll.rollType _roll = inventory.InputSlots[0].GetRoll().rollSo.rollType;
         int _rollNumber = inventory.numberOfRolls;
         int _flavorNumber = inventory.numberOfFlavors;
@@ -120,10 +156,7 @@ public class PlayerPanAttack : MonoBehaviour
             _flavorPrefab.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
             _flavorPrefab.transform.localEulerAngles = new Vector3(-90, 0, 0);
         }
-
         _rollPrefab.GetComponent<EnemyRolling>().BeingHit();
-
-
 
         AudioManager.instance.Play("fire_explosion_01");
         AudioManager.instance.Play("pan_hit_03");
@@ -133,4 +166,40 @@ public class PlayerPanAttack : MonoBehaviour
         CookingSystem.instance.ResetOutputs();
     }
     
+    void HitSlicedROll()
+    {
+        // Roll Type, Flavor Type, Roll 갯수, Flavor 갯수 얻어내는 함수를 Inventory에 구현하기
+        Roll.rollType _roll = inventory.InputSlots[0].GetRoll().rollSo.rollType;
+        int _rollNumber = inventory.numberOfRolls;
+        int _flavorNumber = inventory.numberOfFlavors;
+
+        Vector3 _hitPoint = panPoint.position + new Vector3(PlayerController.instance.staticDirection * 2.2f, 0);
+
+        // Roll, Flavor 생성
+        GameObject _rollPrefab = Instantiate(CookingSystem.instance.outputRoll.rollPrefab[0], _hitPoint, panPoint.rotation);
+
+        if (_rollNumber == _flavorNumber)
+        {
+            _rollPrefab.GetComponent<EnemyRolling>().numberOfFlavor = 1;
+            _rollPrefab.GetComponent<EnemyRolling>().theFlavorSo = inventory.InputSlots[_rollNumber - 1].GetFlavor().flavorSo;  // 해당 슬롯의 Flavor만 가져온다
+
+            GameObject _flavorPrefab =
+                Instantiate(_rollPrefab.GetComponent<EnemyRolling>().theFlavorSo.flavorParticle, _hitPoint, panPoint.rotation);
+            _flavorPrefab.transform.parent = _rollPrefab.transform;
+            _flavorPrefab.GetComponent<ParticleController>().numberOfFlavors = 1;
+            _flavorPrefab.transform.localEulerAngles = new Vector3(-90, 0, 0);
+        }
+        
+        _rollPrefab.GetComponent<EnemyRolling>().BeingHit();
+
+        AudioManager.instance.Play("pan_hit_03");
+        PlayerController.instance.DecreaseWeight();
+
+        inventory.TakeOutRoll();
+        CookingSystem.instance.ResetOutputs();
+        CookingSystem.instance.CreateRollOutput();
+        CookingSystem.instance.CreateFlavorOutput();
+
+
+    }    
 }

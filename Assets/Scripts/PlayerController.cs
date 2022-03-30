@@ -143,6 +143,11 @@ public class PlayerController : MonoBehaviour
         jumpForce = jumpForce - (weight * weightRate);
     }
 
+    public void DecreaseWeight()
+    {
+        weight--;
+    }
+
     public void ResetWeight()
     {
         weight = 0f;
