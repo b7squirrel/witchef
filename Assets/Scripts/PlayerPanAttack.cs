@@ -77,7 +77,7 @@ public class PlayerPanAttack : MonoBehaviour
             {
                 if(enemy.gameObject.CompareTag("Enemy"))
                 {
-                    if (inventory.numberOfRolls < 3)
+                    if (inventory.numberOfRolls < inventory.InputSlots.Length)  // Roll이 슬롯 갯수보다 작으면 캡쳐실행
                     {
                         TakeDamage takeDmg = enemy.GetComponent<TakeDamage>();
                         if (takeDmg != null)
