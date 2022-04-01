@@ -75,11 +75,13 @@ public class Inventory : MonoBehaviour
 
     public void AcquireFlavor(FlavorSo _flavorSo)
     {
-        for (int i = 0; i < numberOfRolls; i++)
+        if(numberOfRolls > 0)  // Roll이 있을 때만 Flavor를 받음
         {
-            InputSlots[i].AddFlavor(_flavorSo);
+            for (int i = 0; i < numberOfRolls; i++)
+            {
+                InputSlots[i].AddFlavor(_flavorSo);
+            }
+            isFlavored = true;
         }
-        isFlavored = true;
-        return;
     }
 }
