@@ -15,7 +15,7 @@ public class ParticleController : MonoBehaviour
     // Pan Attack에서 Hit Roll 때 Flavor 갯수를 넘겨받는다
     // 한 곳에서 깔끔하게 갯수를 넘겨 받도록 수정해야 함
     [Header("Passed by PanAttack / CookingSystem")]
-    public int numberOfFlavors;
+    public int numberOfRolls;
 
     private void Start()
     {
@@ -29,11 +29,11 @@ public class ParticleController : MonoBehaviour
         var psEmission = ps.emission;
         psEmission.enabled = true;
 
-        if (numberOfFlavors == 0)
+        if (numberOfRolls == 0)
         {
             psEmission.enabled = false;
         }
-        if (numberOfFlavors == 1)
+        if (numberOfRolls == 1)
         {
             psMain.startLifetimeMultiplier = 0;
             psMain.startSizeMultiplier = -.3f;
@@ -41,7 +41,7 @@ public class ParticleController : MonoBehaviour
             psShape.radius = .6f;
             psShape.angle = 2;
         }
-        if (numberOfFlavors == 2)
+        if (numberOfRolls == 2)
         {
             psMain.startLifetimeMultiplier = .7f;
             psMain.startSizeMultiplier = .3f;
@@ -49,7 +49,7 @@ public class ParticleController : MonoBehaviour
             psShape.radius = .8f;
             psShape.angle = 35;
         }
-        if (numberOfFlavors == 3)
+        if (numberOfRolls == 3)
         {
             psMain.startLifetimeMultiplier = 1;
             psMain.startSizeMultiplier = .6f;

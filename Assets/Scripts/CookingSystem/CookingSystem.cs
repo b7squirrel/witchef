@@ -77,7 +77,6 @@ public class CookingSystem : MonoBehaviour
     {
         // pan에 올라와 있는 body가 어떤 body type으로 일치하는지
         _rollNameOnPan = inventory.InputSlots[0].GetRoll().rollSo.rollType;
-        Debug.Log("팬 위에 올라와 있는 ROll TYPE은 " + _rollNameOnPan);
         
         if(_rollNameOnPan == Roll.rollType.none)
         {
@@ -127,11 +126,8 @@ public class CookingSystem : MonoBehaviour
                 ResetFlavorParticle();
                 GameObject _flavorParticle = Instantiate(outputFlavor.flavorParticle, roll_Slot.transform.position, Quaternion.identity);
                 _flavorParticle.transform.parent = roll_Slot.transform;
-                _flavorParticle.GetComponent<ParticleController>().numberOfFlavors = inventory.numberOfFlavors;
+                _flavorParticle.GetComponent<ParticleController>().numberOfRolls = inventory.numberOfRolls;
                 _flavorParticle.transform.localEulerAngles = new Vector3(-90, 0, 0);
-                //_flavorSprite.sprite = outputFlavor.flavorSprite[inventory.numberOfFlavors - 1];
-                //_color.a = 1;
-                //_rollSprite.color = _color;
                 return;
             }
         }
@@ -156,10 +152,4 @@ public class CookingSystem : MonoBehaviour
             }
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Color _color = new Color(1, 0, 0, .5f);
-    //    Gizmos.color = _color;
-    //    Gizmos.DrawSphere(roll_Slot.transform.position, 2f);
-    //}
 }

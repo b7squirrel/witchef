@@ -41,7 +41,7 @@ public class ExplosionFlavor : MonoBehaviour
     public float dotAlpha = .5f;
 
 
-    public int numberOfFlavors;
+    public int numberOfRolls;
 
     private Vector2[] explosionSize = new Vector2[3];
     private bool temp;
@@ -49,18 +49,14 @@ public class ExplosionFlavor : MonoBehaviour
 
     private void Start()
     {
-        
-
-
         boxCol_1 = GetComponent<BoxCollider2D>();
         isLastExplosion = false;
-        InitiateExplosionMatrix(numberOfFlavors);
+        InitiateExplosionMatrix(numberOfRolls);
         Instantiate(explosionEffect[0], centerOffset_0, Quaternion.identity);
         Explode(centerOffset_0, boxSizeCore, 0);
         //시간 멈추고 카메라쉐이크
         GameManager.instance.StartCameraShake(8, .9f);
         //GameManager.instance.TimeStop(.1f);
-
     }
 
     private void Update()

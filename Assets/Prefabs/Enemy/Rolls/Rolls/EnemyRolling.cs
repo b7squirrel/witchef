@@ -24,7 +24,7 @@ public class EnemyRolling : MonoBehaviour
 
     [Header("Passed by Player")]
     public int numberOfRolls;
-    public int numberOfFlavor;
+    public bool isFlavored;
 
     //public GameObject explosionFlavor;
     public FlavorSo theFlavorSo;
@@ -89,12 +89,10 @@ public class EnemyRolling : MonoBehaviour
     {
         if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
         {
-            if(numberOfFlavor > 0)
+            if(isFlavored)
             {
                 GameObject _action = Instantiate(theFlavorSo.actionPrefab, transform.position, Quaternion.identity); // 액션프리펩 생성
-                _action.GetComponent<ExplosionFlavor>().numberOfFlavors = numberOfFlavor;
-                //GameObject _clone = Instantiate(explosionFlavor, transform.position, Quaternion.identity);
-                //_clone.GetComponent<ExplosionFlavor>().numberOfFlavors = numberOfFlavor;
+                _action.GetComponent<ExplosionFlavor>().numberOfRolls = numberOfRolls;
             }
 
             Destroy(gameObject);
@@ -113,6 +111,4 @@ public class EnemyRolling : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-    
 }

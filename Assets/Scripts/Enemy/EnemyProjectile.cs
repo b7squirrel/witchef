@@ -59,7 +59,7 @@ public class EnemyProjectile : MonoBehaviour
             }
             else
             {
-                if(Inventory.instance.numberOfFlavors >= Inventory.instance.numberOfRolls) // 포화상태이면 소멸, 아니라면 GetFlavored
+                if(Inventory.instance.isFlavored) // 포화상태이면 소멸, 아니라면 GetFlavored
                 {
                     Saturated();
                 }
