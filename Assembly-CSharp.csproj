@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\ParticleController.cs" />
     <Compile Include="Assets\Scripts\Info.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Goblin\AttackBoxGoblin.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Goblin\GoblinBolt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
