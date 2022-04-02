@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.9599695, y: 0}
+  m_Offset: {x: -3.3674984, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 28.99994, y: 12.86}
+  m_Size: {x: 17.66748, y: 12.86}
   m_EdgeRadius: 0
 --- !u!1 &7444050164106655007
 GameObject:
@@ -501,6 +501,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 1
   isStunned: 0
+  knockBack: 0
   isRolling: 0
   dieEffect: {fileID: 6987084327100221053, guid: 036f43595c5bb0743a94c6b3227bc1f5, type: 3}
   isCaptured: 0

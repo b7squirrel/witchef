@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.047538757, y: -0.15999997}
+  m_Offset: {x: -0.12620163, y: -0.060359716}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9965439, y: 0.75}
+  m_Size: {x: 1.1538696, y: 0.9492805}
   m_EdgeRadius: 0
 --- !u!114 &8192047950546718688
 MonoBehaviour:
@@ -103,6 +103,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 1
   isStunned: 0
+  knockBack: 0
   isRolling: 0
   dieEffect: {fileID: 6987084327100221053, guid: 036f43595c5bb0743a94c6b3227bc1f5, type: 3}
   isCaptured: 0
@@ -440,11 +441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e535bd3db4c9be4c9945a3952374c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 7
   isParried: 0
   groundCheckPoint: {fileID: 8192047951163294220}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   wallDetectingPoint: {fileID: 8192047949842295255}
+  knockBackForce: 1
+  knockBackTime: 0.6
   _direction: 0

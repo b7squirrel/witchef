@@ -7,7 +7,8 @@ public class TakeDamage : MonoBehaviour
     public int currentHP;
     public int maxHP;
 
-    public bool isStunned; 
+    public bool isStunned;
+    public bool knockBack;
     public bool isRolling;
 
     public GameObject dieEffect;
@@ -46,16 +47,9 @@ public class TakeDamage : MonoBehaviour
         {
             if(!isStunned)
             {
-                currentHP--;
                 AudioManager.instance.Play("pan_hit_04");
-                GameManager.instance.StartCameraShake(4, .5f);
-                GameManager.instance.TimeStop(.02f);
-
-                if (currentHP <= 0f)
-                {
-                    AudioManager.instance.Play("pan_hit_05");
-                    Die();
-                }
+                isStunned = true;
+                knockBack = true;
             }
         }
         if (collision.CompareTag("ProjectileDeflected"))
@@ -66,9 +60,14 @@ public class TakeDamage : MonoBehaviour
             Die();
         }
 
-        if (collision.CompareTag("Rolling"))
+        if (collision.CompareTag("RollFlavored"))
         {
             Die();
+        }
+
+        if (collision.CompareTag("Rolling"))
+        {
+            isStunned = true;
         }
     }
 
@@ -84,6 +83,7 @@ public class TakeDamage : MonoBehaviour
         PlayerController.instance.WeightCalculation();
         HideEnemy();
     }
+        
     public void Die()
     {
         Instantiate(dieEffect, transform.position, transform.rotation);

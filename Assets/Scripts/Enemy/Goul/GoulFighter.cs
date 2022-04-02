@@ -17,7 +17,8 @@ public class GoulFighter : MonoBehaviour
 
     private bool canSeePlayer;
 
-    private bool isFacingLeft;
+    [HideInInspector]
+    public bool isFacingLeft;
     private bool isPlayerToLeft, wasPlayerToLeft;
 
     [Header("Follow")]

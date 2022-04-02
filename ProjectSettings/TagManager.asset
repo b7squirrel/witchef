@@ -12,6 +12,7 @@ TagManager:
   - AttackBoxEnemy
   - ProjectileEnemy
   - ProjectileDeflected
+  - RollFlavored
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Ground
   - Debris
   - Flavors
-  - 
+  - GroundHard
   - 
   - 
   - 

@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.15</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.16f1</UnityVersion>
@@ -62,8 +62,8 @@
     <Compile Include="Assets\Scripts\Enemy\Goul\GoulAttackBox.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\EnemyRolling.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\Explosion.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\Roll.cs" />
+    <Compile Include="Assets\Prefabs\Enemy\Rolls\Rolls\Explosion.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\RollSO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\RollsProperty.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\CookingSystem\CookingSystem.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\RecipeFlavor.cs" />
     <Compile Include="Assets\PlayerLoad.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Goblin\GoblinBolt.cs" />
     <Compile Include="Assets\Scripts\CookingSystem\Inventory.cs" />
     <Compile Include="Assets\Scripts\Destroy.cs" />
     <Compile Include="Assets\Scripts\PlayerCaptureBox.cs" />
@@ -84,14 +85,13 @@
     <Compile Include="Assets\Scripts\CookingSystem\Flavor.cs" />
     <Compile Include="Assets\Scripts\PlayerAttackBox.cs" />
     <Compile Include="Assets\Tiles.cs" />
+    <Compile Include="Assets\Scripts\Info.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\ExplosionFlavor.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Goblin\AttackBoxGoblin.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\Warlock\Warlock.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Prefabs\Enemy\Rolls\Flavors\ParticleController.cs" />
-    <Compile Include="Assets\Scripts\Info.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Goblin\AttackBoxGoblin.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Goblin\GoblinBolt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -33,7 +33,14 @@ public class EnemyRolling : MonoBehaviour
     {
         theRB = GetComponent<Rigidbody2D>();
         currentState = rollingState.shooting;
-        
+        if (isFlavored)
+        {
+            this.tag = "RollFlavored";
+        }
+        else
+        {
+            this.tag = "Rolling";
+        }
     }
 
     void Update()
