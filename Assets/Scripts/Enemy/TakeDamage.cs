@@ -47,7 +47,7 @@ public class TakeDamage : MonoBehaviour
         {
             if(!isStunned)
             {
-                AudioManager.instance.Play("pan_hit_04");
+                AudioManager.instance.Play("pan_hit_05");
                 isStunned = true;
                 knockBack = true;
             }

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Witchef_v01.unity
-    guid: 9e9b03e093b1f0e4bb3f55f62bb32b3e
+    path: Assets/Scenes/FryingPan_v02.unity
+    guid: e851589388331e646a43af86f4ae6693
   m_configObjects: {}
